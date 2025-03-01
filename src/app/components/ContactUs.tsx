@@ -9,7 +9,7 @@ import { OnSubmitProps } from "../page";
 interface ContactUsProps {
   onSubmit: ({
     email,
-    firstName,
+    fullName,
     lastName,
     message,
   }: OnSubmitProps) => Promise<void>;
@@ -17,13 +17,13 @@ interface ContactUsProps {
 
 export const ContactUs = ({ onSubmit }: ContactUsProps) => {
   const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
+  const [fullName, setfullName] = useState("");
   const [lastName, setLastName] = useState("");
   const [message, setMessage] = useState("");
 
   const resetForm = () => {
     setEmail("");
-    setFirstName("");
+    setfullName("");
     setLastName("");
     setMessage("");
   };
@@ -31,7 +31,7 @@ export const ContactUs = ({ onSubmit }: ContactUsProps) => {
   const handleSubmit = () => {
     onSubmit({
       email,
-      firstName,
+      fullName,
       lastName,
       message,
       agreeToMarketing: true,
@@ -67,8 +67,8 @@ export const ContactUs = ({ onSubmit }: ContactUsProps) => {
             </label>
             <div className="mt-2.5">
               <input
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                value={fullName}
+                onChange={(e) => setfullName(e.target.value)}
                 id="first-name"
                 name="first-name"
                 type="text"

@@ -3,13 +3,10 @@
 import { handleAddContact } from "./actions";
 import toast from "react-hot-toast";
 import { ContactUs } from "./components/ContactUs";
-import Image from "next/image";
-import whiteLogo from "../../public/assets/white-logo.png";
 
 export interface OnSubmitProps {
   email: string;
-  firstName?: string;
-  lastName?: string;
+  fullName?: string;
   message?: string;
   agreeToMarketing: boolean;
 }
@@ -17,16 +14,14 @@ export interface OnSubmitProps {
 export default function Home() {
   const onSubmit = async ({
     email,
-    firstName,
-    lastName,
+    fullName,
     message,
     agreeToMarketing,
   }: OnSubmitProps) => {
     try {
       await handleAddContact({
         email,
-        firstName,
-        lastName,
+        fullName,
         message,
         agreeToMarketing,
       });
