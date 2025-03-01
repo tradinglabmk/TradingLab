@@ -3,12 +3,13 @@
 import { handleAddContact } from "./actions";
 import toast from "react-hot-toast";
 import { ContactUs } from "./components/ContactUs";
+import Image from "next/image";
+import whiteLogo from "../../public/assets/white-logo.png";
 
 export interface OnSubmitProps {
   email: string;
   firstName?: string;
   lastName?: string;
-  phoneNumber?: string;
   message?: string;
   agreeToMarketing: boolean;
 }
@@ -18,7 +19,6 @@ export default function Home() {
     email,
     firstName,
     lastName,
-    phoneNumber,
     message,
     agreeToMarketing,
   }: OnSubmitProps) => {
@@ -27,7 +27,6 @@ export default function Home() {
         email,
         firstName,
         lastName,
-        phoneNumber,
         message,
         agreeToMarketing,
       });
@@ -40,7 +39,7 @@ export default function Home() {
   };
 
   return (
-    <div className="items-center justify-items-center font-[family-name:var(--font-geist-sans)] py-15">
+    <div className="items-center justify-center flex py-15 sm:w-full">
       <ContactUs onSubmit={onSubmit} />
     </div>
   );

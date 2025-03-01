@@ -11,7 +11,6 @@ interface ContactUsProps {
     email,
     firstName,
     lastName,
-    phoneNumber,
     message,
   }: OnSubmitProps) => Promise<void>;
 }
@@ -21,14 +20,12 @@ export const ContactUs = ({ onSubmit }: ContactUsProps) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [message, setMessage] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
 
   const resetForm = () => {
     setEmail("");
     setFirstName("");
     setLastName("");
     setMessage("");
-    setPhoneNumber("");
   };
 
   const handleSubmit = () => {
@@ -36,7 +33,6 @@ export const ContactUs = ({ onSubmit }: ContactUsProps) => {
       email,
       firstName,
       lastName,
-      phoneNumber,
       message,
       agreeToMarketing: true,
     });
@@ -44,36 +40,30 @@ export const ContactUs = ({ onSubmit }: ContactUsProps) => {
   };
 
   return (
-    <div className="isolate bg-white px-6 py-8 sm:py-10 lg:px-8">
+    <div
+      style={{ width: "340px" }}
+      className="flex flex-col items-center justify-center bg-white px-6 py-8 sm:py-10 sm:m-0 lg:px-8"
+    >
       <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-[-6rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-6rem]"
+        className="text-center items-center justify-center"
+        style={{ width: "320px" }}
       >
-        <div
-          style={{
-            clipPath:
-              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-          className="relative left-1/2 -z-10 aspect-1155/678 w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
-        />
-      </div>
-      <div className="mx-auto max-w-2xl text-center items-center justify-center w-100">
-        <h2 className="text-xl font-semibold tracking-tight text-balance text-gray-900 sm:text-xl">
+        <h2 className="text-sm font-semibold tracking-tight text-balance text-gray-900">
           Нашиот сајт е во изработка. Оставете информации за контакт доколку
-          сакате први да дознаете кога ќе биде готов!
+          сакате да добиете пристап до нашиот бесплатен курс за тргување!
         </h2>
-        <div className="items-center justify-center w-100 ml-10">
-          <Image src={blackLogo} alt="Black Logo" height={100} />
+        <div className="items-center justify-center ml-14">
+          <Image src={blackLogo} alt="Black Logo" height={100} width={200} />
         </div>
       </div>
-      <div className="mx-auto mt-16 max-w-xl sm:mt-20">
-        <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+      <div className="mt-8 sm:mt-8">
+        <div className="">
           <div>
             <label
               htmlFor="first-name"
               className="block text-sm/6 font-semibold text-gray-900"
             >
-              Име
+              Име и презиме
             </label>
             <div className="mt-2.5">
               <input
@@ -83,30 +73,11 @@ export const ContactUs = ({ onSubmit }: ContactUsProps) => {
                 name="first-name"
                 type="text"
                 autoComplete="given-name"
-                className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                className="w-full block rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
               />
             </div>
           </div>
-          <div>
-            <label
-              htmlFor="last-name"
-              className="block text-sm/6 font-semibold text-gray-900"
-            >
-              Презиме
-            </label>
-            <div className="mt-2.5">
-              <input
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                id="last-name"
-                name="last-name"
-                type="text"
-                autoComplete="family-name"
-                className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-              />
-            </div>
-          </div>
-          <div className="sm:col-span-2">
+          <div className="mt-4">
             <label
               htmlFor="email"
               className="block text-sm/6 font-semibold text-gray-900"
@@ -121,32 +92,12 @@ export const ContactUs = ({ onSubmit }: ContactUsProps) => {
                 name="email"
                 type="email"
                 autoComplete="email"
-                className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                className="w-full block rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
               />
             </div>
           </div>
-          <div className="sm:col-span-2">
-            <label
-              htmlFor="phone-number"
-              className="block text-sm/6 font-semibold text-gray-900"
-            >
-              Телефонски број
-            </label>
-            <div className="mt-2.5">
-              <div className="flex rounded-md bg-white outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-                <input
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  id="phone-number"
-                  name="phone-number"
-                  type="text"
-                  placeholder="070100200"
-                  className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="sm:col-span-2">
+
+          <div className="mt-4">
             <label
               htmlFor="message"
               className="block text-sm/6 font-semibold text-gray-900"
@@ -160,11 +111,11 @@ export const ContactUs = ({ onSubmit }: ContactUsProps) => {
                 id="message"
                 name="message"
                 rows={4}
-                className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                className="w-full block rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
               />
             </div>
           </div>
-          <Field className="flex gap-x-4 sm:col-span-2">
+          <Field className="mt-4 flex gap-x-4">
             <div className="flex h-6 items-center">
               <Switch
                 checked={true}
@@ -185,7 +136,7 @@ export const ContactUs = ({ onSubmit }: ContactUsProps) => {
         <div className="mt-10">
           <button
             onClick={handleSubmit}
-            className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="block rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Испрати
           </button>
