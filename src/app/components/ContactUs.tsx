@@ -38,14 +38,45 @@ export const ContactUs = ({ onSubmit }: ContactUsProps) => {
     >
       <div
         className="text-center items-center justify-center"
-        style={{ width: "320px" }}
+        style={{
+          width: "320px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
+          color: "black",
+          fontSize: "12px",
+          rowGap: "4px",
+          textAlign: "left",
+        }}
       >
-        <h2 className="text-sm font-semibold tracking-tight text-balance text-gray-900">
-          Нашиот сајт е во изработка. Оставете информации за контакт доколку
-          сакате да добиете пристап до нашиот бесплатен курс за тргување!
-        </h2>
         <div className="items-center justify-center ml-14">
           <Image src={blackLogo} alt="Black Logo" height={100} width={200} />
+        </div>
+        <div>🚀 Тргувањето започнува тука – Искористи ја шансата!</div>
+        <div>
+          🚀 Нашиот сајт е во финална изработка, но веќе можеш да станеш дел од
+          TradingLab! Остави ги твоите контакт информации и добиј БЕСПЛАТЕН
+          пристап до нашиот ексклузивен курс за тргување!
+        </div>
+        <div>✅ Научи како да тргуваш паметно и профитабилно.</div>
+        <div>✅ Добиј профитабилна стратегија.</div>
+        <div>✅ Направи го првиот чекор кон финансиска слобода</div>
+        <div>Но тоа не е сè! Освен бесплатниот курс, нудиме и:</div>
+        <ul>
+          <li>
+            1. 📊 Trading сигнали – Следи ги нашите стручни анализи и добивај
+            сигнали за влез и излез од пазарот.
+          </li>
+          <li>
+            2. 💰 Менаџирање на твојот капитал – Дозволи ни да го зголемиме
+            твојот капитал со професионален пристап и управување со ризикот.
+          </li>
+        </ul>
+        <div className="font-semibold">
+          Биди чекор понапред – пријави се сега и искористи ја оваа ексклузивна
+          можност! 📩 Внеси ги твоите податоци и започни ја својата трејдерска
+          кариера!
         </div>
       </div>
       <div className="mt-8 sm:mt-8">
