@@ -7,24 +7,17 @@ import Image from "next/image";
 import { OnSubmitProps } from "../page";
 
 interface ContactUsProps {
-  onSubmit: ({
-    email,
-    fullName,
-    lastName,
-    message,
-  }: OnSubmitProps) => Promise<void>;
+  onSubmit: ({ email, fullName, message }: OnSubmitProps) => Promise<void>;
 }
 
 export const ContactUs = ({ onSubmit }: ContactUsProps) => {
   const [email, setEmail] = useState("");
-  const [fullName, setfullName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [message, setMessage] = useState("");
 
   const resetForm = () => {
     setEmail("");
-    setfullName("");
-    setLastName("");
+    setFullName("");
     setMessage("");
   };
 
@@ -32,7 +25,6 @@ export const ContactUs = ({ onSubmit }: ContactUsProps) => {
     onSubmit({
       email,
       fullName,
-      lastName,
       message,
       agreeToMarketing: true,
     });
@@ -68,7 +60,7 @@ export const ContactUs = ({ onSubmit }: ContactUsProps) => {
             <div className="mt-2.5">
               <input
                 value={fullName}
-                onChange={(e) => setfullName(e.target.value)}
+                onChange={(e) => setFullName(e.target.value)}
                 id="first-name"
                 name="first-name"
                 type="text"
