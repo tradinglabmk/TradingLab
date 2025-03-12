@@ -3,7 +3,6 @@
 import FAQAccordion from "./components/FAQAccordion/FAQAccordion";
 import GuidanceSection from "./components/GuidanceSection/GuidanceSection";
 import { HeroSection } from "./components/HeroSection/HeroSection";
-import { NavigationBar } from "./components/NavigationBar/NavigationBar";
 import TradingLabSteps from "./components/TradingLabSteps/TradingLabSteps";
 import { Widgets } from "./components/Widgets/Widgets";
 
