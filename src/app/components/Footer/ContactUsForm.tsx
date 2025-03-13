@@ -42,19 +42,24 @@ export const ContactUsForm = () => {
           type="text"
           placeholder="Име и презиме"
           className="w-full p-2 bg-black border border-gray-600 rounded-md"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
         />
         <input
           type="email"
           placeholder="E - Маил Адреса"
           className="w-full p-2 bg-black border border-gray-600 rounded-md"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <input
-          type="text"
-          placeholder="Број"
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Порака"
           className="w-full p-2 bg-black border border-gray-600 rounded-md"
         />
         <label className="text-sm flex items-start">
-          <input type="checkbox" className="mr-2 mt-1" />
+          <input type="checkbox" className="mr-2 mt-1" defaultChecked />
           Се согласувам TradingLabMK да ми испраќа корисен материјал
         </label>
         <button
