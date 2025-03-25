@@ -1,6 +1,6 @@
 export const TradingIdeas = () => {
   return (
-    <section className="bg-gray-900 text-white py-16 px-6 text-center">
+    <section className="bg-[#191C21] text-white py-16 px-6 text-center">
       <h2 className="text-2xl md:text-3xl font-semibold mb-6">
         🎢 Копирај ги моите трејдинг идеи{" "}
         <span className="text-purple-400">БЕСПЛАТНО!</span>

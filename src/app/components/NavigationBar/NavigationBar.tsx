@@ -37,7 +37,7 @@ export const NavigationBar = () => {
           <ul className="flex gap-6 text-white font-semibold">
             {[
               { name: "Почетна", href: "/" },
-              // { name: "Услуги", href: "/services" },
+              { name: "Услуги", href: "/services" },
               { name: "Што е Forex", href: "/forex" },
               { name: "За нас", href: "/about" },
             ].map((item) => (
@@ -73,7 +73,7 @@ export const NavigationBar = () => {
           <ul className="flex flex-col gap-4 text-white font-semibold">
             {[
               { name: "Почетна", href: "/" },
-              // { name: "Услуги", href: "/servicesPage" },
+              { name: "Услуги", href: "/services" },
               { name: "Што е Forex", href: "/forex" },
               { name: "За нас", href: "/about" },
             ].map((item) => (

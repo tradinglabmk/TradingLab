@@ -78,19 +78,8 @@ export const ContactUsForm = () => {
           className="bg-purple-400 text-black px-4 py-2 rounded-md font-semibold hover:bg-purple-500"
           onClick={handleSubmit}
         >
-          Испрати
+          Превземи
         </button>
-      </div>
-      <div className="flex space-x-4 mt-4 text-purple-400">
-        <a href="#" aria-label="Facebook">
-          🌐
-        </a>
-        <a href="#" aria-label="Instagram">
-          📷
-        </a>
-        <a href="#" aria-label="YouTube">
-          ▶️
-        </a>
       </div>
     </div>
   );
