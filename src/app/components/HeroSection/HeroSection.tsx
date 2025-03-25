@@ -41,7 +41,7 @@ export const HeroSection = () => {
             className="bg-[linear-gradient(88.9deg,_rgba(193,_23,_255,_0)_6.85%,_rgba(123,_33,_156,_0.25)_41.67%,_#700199_98.87%)] text-white px-6 py-3 rounded-full text-lg flex items-center gap-2 shadow-xl cursor-pointer"
             style={{ width: "300px" }}
           >
-            <Link href={"https://m.me/avram4eto"}>🚀 Зачлени се</Link>
+            <Link href={"https://m.me/61573558067668"}>🚀 Зачлени се</Link>
           </button>
           {/* <button className="border border-purple-500 text-purple-500 hover:bg-purple-600 hover:text-white px-6 py-3 rounded-full text-lg flex items-center gap-2 shadow-xl cursor-pointer">
             ▶️ Се прашуваш како ?

@@ -8,6 +8,15 @@ export const ContactUsForm = () => {
   const [fullName, setFullName] = useState("");
   const [message, setMessage] = useState("");
 
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = "/assets/book.pdf";
+    link.download = "библија_за_тргување.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const onSubmit = async () => {
     try {
       await handleAddContact({
@@ -32,11 +41,14 @@ export const ContactUsForm = () => {
 
   const handleSubmit = () => {
     onSubmit();
+    handleDownload();
     resetForm();
   };
   return (
     <div>
-      <h3 className="text-lg font-semibold">Контакт</h3>
+      <h3 className="text-lg font-semibold">
+        Превземи ја нашата бесплатна е-книга
+      </h3>
       <div className="mt-2 space-y-2">
         <input
           type="text"

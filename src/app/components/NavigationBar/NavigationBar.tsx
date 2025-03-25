@@ -59,7 +59,7 @@ export const NavigationBar = () => {
 
         <button className="hidden lg:flex border border-white rounded-full text-white transition relative overflow-hidden p-2 cursor-pointer">
           <span className="pl-6 pr-16 py-2">
-            <Link href={"https://m.me/avram4eto"}>Закажи разговор</Link>
+            <Link href={"https://m.me/61573558067668"}>Закажи разговор</Link>
           </span>
           <span className="w-14 h-14 flex items-center justify-center border border-white rounded-full top-0 absolute right-7 translate-x-1/2">
             <Image src={arrowRight} alt="arrowRight" width={16} height={16} />
