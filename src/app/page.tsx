@@ -1,8 +1,9 @@
 "use client";
 
 import FAQAccordion from "./components/FAQAccordion/FAQAccordion";
-// import GuidanceSection from "./components/GuidanceSection/GuidanceSection";
+import GuidanceSection from "./components/GuidanceSection/GuidanceSection";
 import { HeroSection } from "./components/HeroSection/HeroSection";
+import { TradingIdeas } from "./components/TradingIdeas/TradingIdeas";
 // import TradingLabSteps from "./components/TradingLabSteps/TradingLabSteps";
 import { Widgets } from "./components/Widgets/Widgets";
 
@@ -12,7 +13,8 @@ export default function Home() {
       <HeroSection />
       {/* <TradingLabSteps /> */}
       <Widgets />
-      {/* <GuidanceSection /> */}
+      <TradingIdeas />
+      <GuidanceSection />
       <FAQAccordion />
     </div>
   );

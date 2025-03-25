@@ -1,4 +1,3 @@
-import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
 import traderAnalyzingCharts from "../../../../public/assets/trader-analyzing-charts.png";
@@ -24,27 +23,16 @@ const GuidanceSection = () => {
         </p>
         <ul className="space-y-4">
           <li>
-            📊 <strong>Телеграм група со сигнали</strong> – Добиј точни и
-            навремени информации за подобро тргување.
+            📊 Бесплатна Телеграм група со сигнали – Добиј точни и навремени
+            информации за подобро тргување.
           </li>
           <li>
-            📈 <strong>Менаџирање на акаунт</strong> – Дозволи им на нашите
-            професионалци да го оптимизираат твојот профит.
+            🎓 Бесплатен курс – Преку 100 снимени видео лекции, научи од 0 до
+            100 целосно бесплатно.
           </li>
-          <li>
-            🎓 <strong>Бесплатен курс</strong> – Преку 100 снимени видео лекции,
-            научи ги основите и напредните стратегии целосно бесплатно.
-          </li>
-          <li>
-            🏫 <strong>Forex академија</strong> – наскоро отворање на нова
-            академија откако се ребрендиравме.
-          </li>
+          <li>📚 Бесплатна Е-Книга – Дополни го твоето знаење!</li>
         </ul>
         <div className="mt-12 flex flex-col sm:flex-row sm:justify-between">
-          <div className="flex items-center gap-2">
-            <FaPhoneAlt className="text-red-500" />
-            <span>+389 070 XXX XXX</span>
-          </div>
           <div className="flex items-center gap-2 mt-4 sm:mt-0">
             <MdEmail className="text-red-500" />
             <span>contact@tradinglab.mk</span>

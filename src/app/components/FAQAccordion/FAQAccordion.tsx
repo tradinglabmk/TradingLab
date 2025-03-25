@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AlumniResults } from "./AlumniResults";
 
 const faqs = [
   {
@@ -54,6 +55,10 @@ const FAQAccordion = () => {
           )}
         </div>
       ))}
+
+      <div className="mt-10">
+        <AlumniResults />
+      </div>
     </div>
   );
 };
