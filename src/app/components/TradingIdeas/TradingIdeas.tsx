@@ -19,7 +19,7 @@ export const TradingIdeas = () => {
             ✔ Бесплатна Е-Книга
             <span className="text-purple-400">
               {" "}
-              "The Candlestick Trading Bible"
+              The Candlestick Trading Bible
             </span>{" "}
             од
             <span className="font-bold"> Munehisa Homma</span> превод на
