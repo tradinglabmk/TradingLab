@@ -1,6 +1,6 @@
 import Image from "next/image";
 import whiteLogo from "../../../public/assets/white-logo.png";
-import vantageLogo from "../../../public/assets/vantageLogo.png";
+// import vantageLogo from "../../../public/assets/vantageLogo.png";
 
 export default function AboutUs() {
   return (
@@ -45,7 +45,7 @@ export default function AboutUs() {
           </div>
         </div>
         {/* Partner Broker Section */}
-        <div className="flex flex-col items-center justify-center md:flex-row mt-10">
+        {/* <div className="flex flex-col items-center justify-center md:flex-row mt-10">
           <div style={{ maxHeight: "550px" }} className="mr-0 md:mr-5">
             <Image src={vantageLogo} alt="TradingLab Logo" height={430} />
           </div>
@@ -73,7 +73,7 @@ export default function AboutUs() {
               зајакнување на вашите инвестициски стратегии со Vantage Markets.
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
