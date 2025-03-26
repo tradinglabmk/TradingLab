@@ -46,9 +46,7 @@ export const ContactUsForm = () => {
   };
   return (
     <div>
-      <h3 className="text-lg font-semibold">
-        Превземи ја нашата бесплатна е-книга
-      </h3>
+      <h3 className="text-lg font-semibold">Бесплатна Е-Книга</h3>
       <div className="mt-2 space-y-2">
         <input
           type="text"
