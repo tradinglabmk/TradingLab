@@ -22,7 +22,8 @@ export const HeroSection = () => {
       <div className="w-full md:pl-8 text-center md:text-left mt-6 md:mt-0">
         <h2 className="text-2xl md:text-3xl font-bold">
           📢 Приклучи се на нашата{" "}
-          <span className="text-purple-500">Премиум Телеграм</span> група!
+          <span className="text-purple-500">Бесплатна Премиум Телеграм</span>{" "}
+          група!
         </h2>
         <p className="mt-4 text-white">Во рамките на групата добиваш:</p>
         <p className="text-white">✔️ Прецизни сигнали и анализи за тргување.</p>
