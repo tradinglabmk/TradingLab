@@ -8,7 +8,7 @@ export const VimeoPlayer = () => {
       <div className="rounded-[40px] border border-white w-full max-w-4xl aspect-video overflow-hidden mb-12">
         <iframe
           className="w-full h-full"
-          src="https://www.youtube.com/embed/W6lXoIM44is?si=td37tpChfZx584d3&amp;controls=0"
+          src="https://www.youtube.com/embed/W6lXoIM44is?si=td37tpChfZx584d3"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
