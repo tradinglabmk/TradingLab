@@ -43,7 +43,7 @@ export const WhyFree = () => {
               priority
             />
           </div>
-          <p className="italic mt-6">
+          <p className="mt-6">
             — Спонзорирани сме од најголемите трговски платформи во светот, што
             значи дека нашата услуга е 100% бесплатна.
           </p>
