@@ -7,6 +7,7 @@ export const ContactUsForm = () => {
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleDownload = () => {
     const link = document.createElement("a");
@@ -39,11 +40,19 @@ export const ContactUsForm = () => {
     setMessage("");
   };
 
-  const handleSubmit = () => {
-    onSubmit();
+  const handleSubmit = async () => {
+    if (!fullName.trim() || !email.trim() || !message.trim()) {
+      toast.error("Ве молиме пополнете ги сите полиња пред да ја превземете книгата.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    await onSubmit();
     handleDownload();
     resetForm();
+    setIsSubmitting(false);
   };
+
   return (
     <div>
       <h3 className="text-lg font-semibold">Бесплатна Е-Книга</h3>
@@ -73,10 +82,11 @@ export const ContactUsForm = () => {
           Се согласувам TradingLabMK да ми испраќа корисен материјал
         </label>
         <button
-          className="bg-purple-400 text-black px-4 py-2 rounded-md font-semibold hover:bg-purple-500"
+          className="bg-purple-400 text-black px-4 py-2 rounded-md font-semibold hover:bg-purple-500 disabled:opacity-50"
           onClick={handleSubmit}
+          disabled={isSubmitting}
         >
-          Превземи
+          {isSubmitting ? "Се презема..." : "Преземи"}
         </button>
       </div>
     </div>

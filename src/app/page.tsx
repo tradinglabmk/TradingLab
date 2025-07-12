@@ -1,8 +1,10 @@
+"use client";
+
 import FAQAccordion from "./components/FAQAccordion/FAQAccordion";
 import GuidanceSection from "./components/GuidanceSection/GuidanceSection";
 import { HeroSection } from "./components/HeroSection/HeroSection";
 import { TradingIdeas } from "./components/TradingIdeas/TradingIdeas";
-import { VimeoPlayer } from "./components/VimeoPlayer/VimeoPlayer";
+// import TradingLabSteps from "./components/TradingLabSteps/TradingLabSteps";
 import { Widgets } from "./components/Widgets/Widgets";
 
 export default function Home() {
@@ -10,9 +12,8 @@ export default function Home() {
     <div className="w-full">
       <HeroSection />
       {/* <TradingLabSteps /> */}
-      <VimeoPlayer />
-      <TradingIdeas />
       <Widgets />
+      <TradingIdeas />
       <GuidanceSection />
       <FAQAccordion />
     </div>

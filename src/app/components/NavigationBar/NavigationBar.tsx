@@ -38,7 +38,6 @@ export const NavigationBar = () => {
             {[
               { name: "Почетна", href: "/" },
               { name: "Услуги", href: "/services" },
-              { name: "Зошто е бесплатно", href: "/whyFree" },
               { name: "Што е Forex", href: "/forex" },
               { name: "За нас", href: "/about" },
             ].map((item) => (
@@ -75,7 +74,6 @@ export const NavigationBar = () => {
             {[
               { name: "Почетна", href: "/" },
               { name: "Услуги", href: "/services" },
-              { name: "Зошто е бесплатно", href: "/whyFree" },
               { name: "Што е Forex", href: "/forex" },
               { name: "За нас", href: "/about" },
             ].map((item) => (
