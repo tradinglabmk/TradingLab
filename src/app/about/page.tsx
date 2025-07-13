@@ -6,13 +6,12 @@ export default function AboutUs() {
   return (
     <div className="bg-[#191C21] text-white p-6 md:p-12">
       <div className="max-w-4xl mx-auto">
-        {/* About Section */}
         <div className="flex flex-col items-center justify-center">
           <div style={{ maxHeight: "550px" }} className="mr-0 md:mr-5">
-            <Image src={whiteLogo} alt="TradingLab Logo" height={1000} />
+            <Image src={whiteLogo} alt="TradingLab Logo" width={600} />
           </div>
           <div>
-            <h2 className="text-purple-400 text-2xl font-bold mb-4">За нас</h2>
+            <h2 className="text-[#FEBF10] text-2xl font-bold mb-4">За нас</h2>
             <p className="text-gray-300 leading-relaxed mb-6">
               Ние сме посветен тим на трговци во форекс со повеќе од 3 години
               искуство во навигација низ глобалните финансиски пазари. Нашата
