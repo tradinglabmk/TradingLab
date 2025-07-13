@@ -4,7 +4,7 @@ import { Social } from "./Social";
 
 export const Services = () => {
   return (
-    <div className="bg-gray-900">
+    <div className="bg-[#191C21]">
       <TradingIdeas />
 
       <Social />

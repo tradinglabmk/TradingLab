@@ -60,14 +60,14 @@ export const ContactUsForm = () => {
         <input
           type="text"
           placeholder="Име и презиме"
-          className="w-full p-2 bg-black border border-gray-600 rounded-md"
+          className="w-full p-2 bg-[#191C21] border border-gray-600 rounded-md"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
         />
         <input
           type="email"
           placeholder="E - Маил Адреса"
-          className="w-full p-2 bg-black border border-gray-600 rounded-md"
+          className="w-full p-2 bg-[#191C21] border border-gray-600 rounded-md"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -75,14 +75,14 @@ export const ContactUsForm = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Порака"
-          className="w-full p-2 bg-black border border-gray-600 rounded-md"
+          className="w-full p-2 bg-[#191C21] border border-gray-600 rounded-md"
         />
         <label className="text-sm flex items-start">
           <input type="checkbox" className="mr-2 mt-1" defaultChecked />
           Се согласувам TradingLabMK да ми испраќа корисен материјал
         </label>
         <button
-          className="bg-purple-400 text-black px-4 py-2 rounded-md font-semibold hover:bg-purple-500 disabled:opacity-50"
+          className="bg-[#FEBF10] text-black px-4 py-2 rounded-md font-semibold hover:bg-yellow-400 disabled:opacity-50"
           onClick={handleSubmit}
           disabled={isSubmitting}
         >
