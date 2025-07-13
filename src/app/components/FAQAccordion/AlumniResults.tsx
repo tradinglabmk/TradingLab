@@ -6,11 +6,11 @@ export const AlumniResults = () => {
     <section className=" text-white py-16 px-6 text-center flex flex-col items-center justify-center">
       <h2 className="text-2xl md:text-3xl font-semibold mb-6">
         Резултати од наши алумни од
-        <span className="text-purple-400"> Sparta Bank </span>
+        <span className="text-[#FEBF10]"> Sparta Bank </span>
         академијата!
       </h2>
       <button
-        className="bg-[linear-gradient(88.9deg,_rgba(193,_23,_255,_0)_6.85%,_rgba(123,_33,_156,_0.25)_41.67%,_#700199_98.87%)] text-white px-6 py-3 rounded-full text-lg flex items-center gap-2 shadow-xl cursor-pointer justify-center"
+        className="bg-[linear-gradient(88.9deg,_rgba(254,191,16,0)_6.85%,_rgba(254,191,16,0.4)_41.67%,_#FEBF10_98.87%)] text-white px-6 py-3 rounded-full text-lg flex items-center gap-2 shadow-xl cursor-pointer justify-center"
         style={{ width: "300px" }}
       >
         <Link href={"https://m.me/61573558067668"}>🚀 Зачлени се</Link>
