@@ -1,7 +1,7 @@
 import Image from "next/image";
 import whyFreeImage from "../../../../public/assets/dimce.jpg";
 
-const WhyFreeSection = () => {
+const WhyFree = () => {
   return (
     <section className="bg-[#191C21] text-white py-16 px-5 md:px-20 flex flex-col lg:flex-row items-start gap-10">
       <div className="w-full lg:w-1/2">
@@ -50,4 +50,4 @@ const WhyFreeSection = () => {
   );
 };
 
-export default WhyFreeSection;
+export default WhyFree;
