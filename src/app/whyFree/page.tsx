@@ -1,4 +1,4 @@
-import { WhyFree } from "../components/WhyFree/WhyFree";
+import WhyFree from "../components/WhyFree/WhyFree";
 
 export default function WhyFreePage() {
   return (
