@@ -3,7 +3,7 @@ import whyFreeImage from "../../../../public/assets/dimce.jpg";
 
 const WhyFree = () => {
   return (
-    <section className="bg-[#191C21] text-white py-16 px-5 md:px-20 flex flex-col lg:flex-row items-start gap-10">
+    <section className="bg-[#0F1014] text-white py-16 px-5 md:px-20 flex flex-col lg:flex-row items-start gap-10">
       <div className="w-full lg:w-1/2">
         <h2 className="text-2xl md:text-3xl font-bold mb-6">
           <span className="text-[#FEBF10]">Зошто е бесплатно ?</span>

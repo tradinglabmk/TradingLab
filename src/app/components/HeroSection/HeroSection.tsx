@@ -1,7 +1,7 @@
 import { IoMdCheckmark } from "react-icons/io";
 import { FaPlay } from "react-icons/fa";
 import Image from "next/image";
-import iphone13 from "../../../../public/assets/iphone13.png";
+import iphone11 from "../../../../public/assets/iphone11.png";
 import Link from "next/link";
 
 export const HeroSection = () => {
@@ -10,15 +10,15 @@ export const HeroSection = () => {
       <div className="w-full flex justify-center">
         <div className="rounded-lg overflow-hidden max-w-sm md:max-w-none">
           <Image
-            src={iphone13}
-            width={380}
+            src={iphone11}
+            width={500}
             alt="Trading desk"
-            className="object-cover w-full h-auto"
+            className="w-[300px] h-auto"
           />
         </div>
       </div>
 
-      <div className="w-full md:pl-8 text-center md:text-left mt-6 md:mt-0">
+      <div className="w-full md:pl-8  md:text-left mt-6 md:mt-0">
         <h2 className="text-2xl md:text-3xl font-bold">
           📢 Приклучи се на нашата бесплатна{" "}
           <span className="text-[#FEBF10]">Премиум Телеграм</span> група!
