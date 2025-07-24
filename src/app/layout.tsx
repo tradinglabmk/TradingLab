@@ -18,7 +18,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "TradingLab 🔥",
-  description: "Forex - Money - Macedonia",
+  description:
+    "Forex - Trading - Education - Signals - Markets - EBook - Business",
 };
 
 export default function RootLayout({
