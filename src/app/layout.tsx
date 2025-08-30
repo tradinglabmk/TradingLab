@@ -5,7 +5,6 @@ import { Toaster } from "react-hot-toast";
 import { Footer } from "./components/Footer/Footer";
 import { NavigationBar } from "./components/NavigationBar/NavigationBar";
 import Script from "next/script";
-import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -51,7 +50,7 @@ export default function RootLayout({
           `}
         </Script>
         <noscript>
-          <Image
+          <img
             alt=""
             height="1"
             width="1"
