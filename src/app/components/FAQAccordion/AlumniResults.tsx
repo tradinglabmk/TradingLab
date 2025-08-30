@@ -5,9 +5,7 @@ export const AlumniResults = () => {
   return (
     <section className=" text-white py-16 px-6 text-center flex flex-col items-center justify-center">
       <h2 className="text-2xl md:text-3xl font-semibold mb-6">
-        Резултати од наши алумни од
-        <span className="text-[#FEBF10]"> Sparta Bank </span>
-        академијата!
+        Резултати од нашата заедница
       </h2>
       <button
         className="bg-[linear-gradient(88.9deg,_rgba(254,191,16,0)_6.85%,_rgba(254,191,16,0.4)_41.67%,_#FEBF10_98.87%)] text-white px-6 py-3 rounded-full text-lg flex items-center gap-2 shadow-xl cursor-pointer justify-center"
