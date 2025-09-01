@@ -15,7 +15,7 @@ export const AlumniResults = () => {
       </button>
 
       <div className="mt-10 flex flex-wrap justify-center gap-6">
-        {[1, 2, 3, 4, 5].map((item, index) => (
+        {[1, 2].map((item, index) => (
           <div
             key={index}
             className="w-56 md:w-64 lg:w-72 h-96rounded-xl shadow-lg overflow-hidden transform hover:scale-135 transition"
