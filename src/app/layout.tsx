@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   title: "TradingLab 🔥",
   description:
     "Forex - Trading - Education - Signals - Markets - EBook - Business",
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
@@ -50,6 +54,7 @@ export default function RootLayout({
           `}
         </Script>
         <noscript>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt=""
             height="1"

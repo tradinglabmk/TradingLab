@@ -6,12 +6,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import whiteLogo from "../../../../public/assets/white-logo.png";
 import arrowRight from "../../../../public/assets/arrow-right.png";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 export const NavigationBar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [isServicesHovered, setIsServicesHovered] = useState(false);
 
   return (
     <div className="bg-[#0F1014] p-4">
@@ -45,41 +44,16 @@ export const NavigationBar = () => {
               </Link>
             </li>
 
-            <li
-              className="relative"
-              onMouseEnter={() => setIsServicesHovered(true)}
-              onMouseLeave={() => setIsServicesHovered(false)}
-            >
+            {/* Услуги — plain link, dropdown removed */}
+            <li>
               <Link
                 href="/services"
-                className={`transition flex items-center gap-1 ${
-                  pathname === "/services"
-                    ? "text-white"
-                    : "hover:text-[#FEBF10]"
+                className={`transition ${
+                  pathname === "/services" ? "text-white" : "hover:text-[#FEBF10]"
                 }`}
               >
                 Услуги
-                <ChevronDown size={16} />
               </Link>
-
-              {isServicesHovered && (
-                <div className="absolute pt-6 left-0 top-full z-10 w-60">
-                  <div className="bg-[#0F1014] text-white rounded-xl shadow-lg overflow-hidden">
-                    {[
-                      "Бесплатна едукација",
-                      "Бесплатна E - Книга",
-                      "Бесплатни сигнали",
-                    ].map((label, idx) => (
-                      <div
-                        key={idx}
-                        className="px-4 py-3 hover:bg-[#FEBF10] hover:text-black transition-all duration-200 text-sm font-medium"
-                      >
-                        {label}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
             </li>
 
             <li>
