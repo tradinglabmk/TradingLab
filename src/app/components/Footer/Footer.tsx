@@ -25,18 +25,20 @@ export const Footer = () => {
             {/* Social Media Links */}
             <div className="space-y-3">
               <a 
-                href="#" 
+                href="https://www.instagram.com/tradinglab.mk/" 
                 className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-200"
+                target="_blank"
               >
                 <FaInstagram className="text-xl" />
-                <span className="underline">INSTAGRAM</span>
+                <span>INSTAGRAM</span>
               </a>
               <a 
-                href="#" 
+                href="https://www.youtube.com/@tradinglabmk" 
                 className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-200"
+                target="_blank"
               >
                 <FaYoutube className="text-xl" />
-                <span className="underline">YOUTUBE</span>
+                <span>YOUTUBE</span>
               </a>
             </div>
           </div>

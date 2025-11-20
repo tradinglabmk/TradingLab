@@ -29,9 +29,9 @@ const ImageTextSection = ({
   
   return (
     <section className={`${backgroundColor} text-white py-16 px-6 md:px-12 lg:px-20`}>
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+<div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-start gap-12 lg:gap-16">
         {/* Text Content */}
-        <div className={`w-full lg:w-1/2 space-y-6 ${reverseLayout ? 'lg:order-2' : ''}`}>
+        <div className={`w-full lg:w-[55%] space-y-6 ${reverseLayout ? 'lg:order-2' : ''}`}>
           {title && (
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-normal mb-8">
               <span style={{ color: titleColor }}>{title}</span>
@@ -44,7 +44,7 @@ const ImageTextSection = ({
         </div>
 
         {/* Image Section */}
-        <div className={`w-full lg:w-1/2 relative ${showQuoteOverlay ? 'mb-40' : ''} ${reverseLayout ? 'lg:order-1' : ''}`}>
+        <div className={`w-full lg:w-[45%] relative ${showQuoteOverlay ? 'mb-40' : ''} ${reverseLayout ? 'lg:order-1' : ''} flex-shrink-0`}>
           <div className="relative">
             <Image
               src={finalImageSrc}
