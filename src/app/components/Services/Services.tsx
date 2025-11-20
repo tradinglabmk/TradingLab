@@ -1,11 +1,11 @@
 import { ContactUsForm } from "../Footer/ContactUsForm";
-import { TradingIdeas } from "../TradingIdeas/TradingIdeas";
+import { CopyMySignals } from "../CopyMySignals/CopyMySignals";
 import { Social } from "./Social";
 
 export const Services = () => {
   return (
     <div className="bg-[#191C21]">
-      <TradingIdeas />
+      <CopyMySignals />
 
       <Social />
 

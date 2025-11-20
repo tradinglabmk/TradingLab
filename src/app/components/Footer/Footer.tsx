@@ -1,54 +1,92 @@
 import Image from "next/image";
 import { ContactUsForm } from "./ContactUsForm";
-import whiteLogo from "../../../../public/assets/white-logo.png"
+import whiteLogo from "../../../../public/assets/white-logo.png";
+import { FaInstagram, FaYoutube } from "react-icons/fa";
 
 export const Footer = () => {
   return (
-    <footer className="bg-black text-white py-10 px-5 md:px-20">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-start">
-        <div className="mb-8 md:mb-0">
-          <Image
-            src={whiteLogo}
-            alt="TradingLab Logo"
-            width={160}
-            height={40}
-            className="object-contain"
-          />
-          <p className="text-[#FEBF10] mt-4 max-w-sm">
-            Стани дел од најдобрата трејдерска лабораторија во Македонија и
-            пошироко, и почни да заработуваш.
-          </p>
+    <footer className="bg-black text-white py-16 px-5 md:px-20">
+      <div className="container mx-auto">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {/* Left Section - Logo and Description */}
+          <div className="space-y-6">
+            <Image
+              src={whiteLogo}
+              alt="TradingLab Logo"
+              width={200}
+              height={50}
+              className="object-contain"
+            />
+            <p className="text-gray-400 leading-relaxed max-w-sm">
+              Стани дел од најдобрата трејдерска лабораторија во Македонија и пошироко, и почни да заработуваш.
+            </p>
+            
+            {/* Social Media Links */}
+            <div className="space-y-3">
+              <a 
+                href="#" 
+                className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-200"
+              >
+                <FaInstagram className="text-xl" />
+                <span className="underline">INSTAGRAM</span>
+              </a>
+              <a 
+                href="#" 
+                className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-200"
+              >
+                <FaYoutube className="text-xl" />
+                <span className="underline">YOUTUBE</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Middle Section - Menu */}
+          <div className="space-y-6">
+            <h3 className="text-xl font-medium text-white">Мени</h3>
+            <ul className="space-y-3 text-gray-400">
+              <li>
+                <a href="#" className="hover:text-white transition-colors duration-200">
+                  ЗОШТО Е БЕСПЛАТНО?
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-white transition-colors duration-200">
+                  КУРС
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-white transition-colors duration-200">
+                  ИСКУСТВА ОД ЗАЕДНИЦАТА
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-white transition-colors duration-200">
+                  ЗА НАС
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-white transition-colors duration-200">
+                  КОНТАКТ
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Right Section - Contact Form */}
+          <ContactUsForm />
         </div>
 
-        <div className="mb-8 md:mb-0">
-          <h3 className="text-lg font-semibold">Мени</h3>
-          <ul className="mt-2 space-y-2">
-            <li>
-              <a href="#" className="hover:text-[#FEBF10]">
-                Почетна
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-[#FEBF10]">
-                Услуги
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-[#FEBF10]">
-                Што е Forex
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-[#FEBF10]">
-                За нас
-              </a>
-            </li>
-          </ul>
+        {/* Bottom Section - Copyright */}
+        <div className="border-t border-gray-800 pt-8">
+          <div className="text-center text-gray-500">
+            <p>© 2025 TradingLabMK. All rights reserved.</p>
+            <p className="mt-1 text-sm">
+              designed by <a href="#" className="underline hover:text-white transition-colors duration-200">Adrijan G</a>
+            </p>
+          </div>
         </div>
-
-        <ContactUsForm />
       </div>
-      <div className="border-t border-[#FEBF10] mt-10"></div>
     </footer>
   );
 };

@@ -1,23 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { Footer } from "./components/Footer/Footer";
 import { NavigationBar } from "./components/NavigationBar/NavigationBar";
 import Script from "next/script";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const roboto = Roboto({
+  variable: "--font-roboto",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "TradingLab 🔥",
+  title: "TradingLab",
   description:
     "Forex - Trading - Education - Signals - Markets - EBook - Business",
   icons: {
@@ -34,11 +30,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${roboto.variable} antialiased`}
       >
         <Toaster position="top-center" />
         <NavigationBar />
-        {children}
+        <div className="pt-[80px]">
+          {children}
+        </div>
         <Footer />
 
         <Script id="meta-pixel" strategy="afterInteractive">

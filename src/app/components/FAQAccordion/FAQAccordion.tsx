@@ -1,5 +1,7 @@
+"use client";
+
 import { useState } from "react";
-import { AlumniResults } from "./AlumniResults";
+import { ScrollAnimationWrapper } from "../ScrollAnimationWrapper/ScrollAnimationWrapper";
 
 const faqs = [
   {
@@ -20,7 +22,7 @@ const faqs = [
   {
     question: "Дали ми треба искуство за да ги следам сигналите?",
     answer:
-      "Не, не ви е потребно никакво претходно искуство! 📈 🔍 Сите сигнали доаѓаат со детални насоки чекор по чекор, така што и почетници можат лесно да ги следат. Нашиот тим обезбедува јасни објаснувања за секој потег, помагајќи ви да стекнете знаење и самодоверба во процесот на тргување.",
+      "Не, не ви е потребно никакво претходно искуство! 📈 🔍 Сите сигнали доаѓаат со детални насоки чекор по чекор, така што и почетници можат лесно да ги следат. Нашиот тим обезбедува јасни објаснувања за секој потег, помагајќи ви да стекнете знаење и самодоверба в процесот на тргување.",
   },
   {
     question:
@@ -38,46 +40,50 @@ const FAQAccordion = () => {
   };
 
   return (
-    <div className="max-w-2xl py-20 mx-auto text-white bg-[#191C21] min-w-full flex flex-col items-center justify-center px-5 md:px-0">
-      <h2 className="text-2xl font-bold text-center mb-6">
-        Често поставувани прашања
-      </h2>
+    <div className="max-w-2xl py-20 mx-auto text-white bg-[#101015] min-w-full flex flex-col items-center justify-center px-5 md:px-0">
+      <ScrollAnimationWrapper animationType="fadeInUp" delay={0} duration={0.6}>
+        <h2 className="text-xl text-center mb-6 text-[#9F62F8]">
+          Често поставувани прашања
+        </h2>
+      </ScrollAnimationWrapper>
 
-      {faqs.map((faq, index) => {
-        const isOpen = openIndex === index;
+      <div className="w-full md:w-2/3">
+        {faqs.map((faq, index) => {
+          const isOpen = openIndex === index;
 
-        return (
-          <div
-            key={index}
-            className="border border-[#FEBF10] rounded-xl mb-3 w-full md:w-2/3 overflow-hidden transition-all duration-500"
-          >
-            <button
-              onClick={() => toggleFAQ(index)}
-              className="w-full text-left p-4 flex justify-between items-center"
+          return (
+            <ScrollAnimationWrapper 
+              key={index}
+              animationType="fadeInUp" 
+              delay={index * 100} 
+              duration={0.5}
             >
-              <span>{faq.question}</span>
-              <span
-                className={`transition-transform duration-300 text-[#FEBF10] ${
-                  isOpen ? "rotate-180" : "rotate-0"
-                }`}
-              >
-                ▼
-              </span>
-            </button>
+              <div className="border border-[#BF94FF] rounded-xl mb-3 w-full overflow-hidden transition-all duration-500">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full text-left p-4 flex justify-between items-center"
+                >
+                  <span>{faq.question}</span>
+                  {/* <span
+                    className={`transition-transform duration-300 text-[#FEBF10] ${
+                      isOpen ? "rotate-180" : "rotate-0"
+                    }`}
+                  >
+                    ▼
+                  </span> */}
+                </button>
 
-            <div
-              className={`transition-all duration-500 ease-in-out overflow-hidden ${
-                isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-              }`}
-            >
-              <div className="p-4 border-t border-[#FEBF10]">{faq.answer}</div>
-            </div>
-          </div>
-        );
-      })}
-
-      <div className="mt-10">
-        <AlumniResults />
+                <div
+                  className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                    isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <div className="p-4 border-t border-[#BF94FF]">{faq.answer}</div>
+                </div>
+              </div>
+            </ScrollAnimationWrapper>
+          );
+        })}
       </div>
     </div>
   );

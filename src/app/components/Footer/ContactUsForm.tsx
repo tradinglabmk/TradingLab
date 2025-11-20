@@ -1,7 +1,8 @@
 "use client";
-import { handleAddContact } from "@/app/actions";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { Button } from "../Button/Button";
+import { saveContact } from "../../data/contacts";
 
 export const ContactUsForm = () => {
   const [email, setEmail] = useState("");
@@ -9,22 +10,21 @@ export const ContactUsForm = () => {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = "/assets/book.pdf";
-    link.download = "библија_за_тргување.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  // const handleDownload = () => {
+  //   const link = document.createElement("a");
+  //   link.href = "/assets/book.pdf";
+  //   link.download = "библија_за_тргување.pdf";
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
 
   const onSubmit = async () => {
     try {
-      await handleAddContact({
-        email,
+      await saveContact({
         fullName,
-        message,
-        agreeToMarketing: true,
+        email,
+        message
       });
       toast.success("Успешно се зачувани вашите информации. Ви благодариме!🔥");
     } catch {
@@ -48,46 +48,63 @@ export const ContactUsForm = () => {
 
     setIsSubmitting(true);
     await onSubmit();
-    handleDownload();
+    // handleDownload();
     resetForm();
     setIsSubmitting(false);
   };
 
   return (
-    <div>
-      <h3 className="text-lg font-semibold">Бесплатна Е-Книга</h3>
-      <div className="mt-2 space-y-2">
-        <input
-          type="text"
-          placeholder="Име и презиме"
-          className="w-full p-2 bg-[#191C21] border border-gray-600 rounded-md"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="E - Маил Адреса"
-          className="w-full p-2 bg-[#191C21] border border-gray-600 rounded-md"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <textarea
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Порака"
-          className="w-full p-2 bg-[#191C21] border border-gray-600 rounded-md"
-        />
-        <label className="text-sm flex items-start">
-          <input type="checkbox" className="mr-2 mt-1" defaultChecked />
-          Се согласувам TradingLabMK да ми испраќа корисен материјал
-        </label>
-        <button
-          className="bg-[#FEBF10] text-black px-4 py-2 rounded-md font-semibold hover:bg-yellow-400 disabled:opacity-50"
-          onClick={handleSubmit}
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Се презема..." : "Преземи"}
-        </button>
+    <div className="space-y-6">
+      <h3 className="text-xl font-medium text-white">ИСПРАТИ ПОРАКА</h3>
+      
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm text-gray-400 mb-2 uppercase tracking-wide">
+            Име и презиме
+          </label>
+          <input
+            type="text"
+            placeholder="Петар Петровски"
+            className="w-full p-3 bg-transparent border border-gray-600 rounded-md text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none transition-colors duration-200"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm text-gray-400 mb-2 uppercase tracking-wide">
+            E - Маил
+          </label>
+          <input
+            type="email"
+            placeholder="petarpetrovski@gmail.com"
+            className="w-full p-3 bg-transparent border border-gray-600 rounded-md text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none transition-colors duration-200"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm text-gray-400 mb-2 uppercase tracking-wide">
+            Порака
+          </label>
+          <textarea
+            rows={4}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="ех. Како да се зачленам ?"
+            className="w-full p-3 bg-transparent border border-gray-600 rounded-md text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none transition-colors duration-200 resize-none"
+          />
+        </div>
+
+        <div className="pt-2">
+          <Button
+            body={isSubmitting ? "Се праќа..." : "ИСПРАТИ"}
+            variant="primary"
+            onClick={handleSubmit}
+            className={`${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+          />
+        </div>
       </div>
     </div>
   );
