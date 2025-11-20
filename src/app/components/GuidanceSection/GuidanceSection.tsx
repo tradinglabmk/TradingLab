@@ -1,4 +1,4 @@
-import { MdEmail, MdPhone } from "react-icons/md";
+import { MdEmail } from "react-icons/md";
 import Image from "next/image";
 import guidance from "../../../../public/assets/guiadance_section/guidance.svg";
 

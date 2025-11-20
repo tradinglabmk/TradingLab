@@ -33,7 +33,7 @@ const readContactsFromFile = async (): Promise<ContactInfo[]> => {
     await ensureDataDirectory();
     const fileContent = await fs.readFile(CONTACTS_FILE_PATH, 'utf-8');
     return JSON.parse(fileContent);
-  } catch (error) {
+  } catch {
     // File doesn't exist or is empty, return empty array
     return [];
   }

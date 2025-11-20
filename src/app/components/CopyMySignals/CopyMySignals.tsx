@@ -53,7 +53,7 @@ export const CopyMySignals = () => {
               <IoMdCheckmark className="text-[#fff] mt-1 flex-shrink-0 text-xl" />
               <span>
                 Бесплатна Е-Книга{" "}
-                <span className="text-[#fff] font-normal">"The Candlestick Trading Bible"</span> од{" "}
+                <span className="text-[#fff] font-normal">&ldquo;The Candlestick Trading Bible&rdquo;</span> од{" "}
                 <span className="text-[#fff] font-normal">Munehisa Homma</span>{" "}
                 преведена на македонски јазик од тимот на{" "}
                 <span className="text-[#fff] font-normal">TradingLabMK</span>
