@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   description:
     "Forex - Trading - Education - Signals - Markets - EBook - Business",
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/favicon.svg",
+    apple: "/favicon.svg",
   },
 };
 
@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-black">
       <body
         className={`${roboto.variable} antialiased`}
       >

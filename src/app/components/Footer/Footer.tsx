@@ -48,27 +48,27 @@ export const Footer = () => {
             <h3 className="text-xl font-medium text-white">Мени</h3>
             <ul className="space-y-3 text-gray-400">
               <li>
-                <a href="#" className="hover:text-white transition-colors duration-200">
+                <a href="/#forex-academy" className="hover:text-white transition-colors duration-200">
                   ЗОШТО Е БЕСПЛАТНО?
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors duration-200">
+                <a href="/#forex-academy" className="hover:text-white transition-colors duration-200">
                   КУРС
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors duration-200">
+                <a href="/#community-experiences" className="hover:text-white transition-colors duration-200">
                   ИСКУСТВА ОД ЗАЕДНИЦАТА
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors duration-200">
+                <a href="/about" className="hover:text-white transition-colors duration-200">
                   ЗА НАС
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors duration-200">
+                <a href="/contact-us" className="hover:text-white transition-colors duration-200">
                   КОНТАКТ
                 </a>
               </li>

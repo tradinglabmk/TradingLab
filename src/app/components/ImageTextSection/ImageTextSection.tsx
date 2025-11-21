@@ -51,9 +51,7 @@ const ImageTextSection = ({
 
         {/* Image Section */}
         <div
-          className={`w-full relative ${
-            showQuoteOverlay ? "mb-40" : ""
-          } ${reverseLayout ? "lg:order-1" : ""} lg:col-start-2 lg:col-end-3 flex-shrink-0 lg:min-h-[400px] min-h-[240px] z-20`}
+          className={`w-full ${reverseLayout ? "lg:order-1" : ""} lg:col-start-2 lg:col-end-3 flex-shrink-0 lg:min-h-[400px] min-h-[240px] z-20`}
         >
           <div className="relative w-full h-full">
             <Image
@@ -63,16 +61,16 @@ const ImageTextSection = ({
               width={600}
               height={400}
             />
-
-            {/* Quote Overlay */}
-            {showQuoteOverlay && quoteText && (
-              <div className="absolute bottom-[-2] left-4 right-4 bg-gradient-to-r from-[#9B5EF1] to-[#59368B] rounded-2xl p-4 md:p-6">
-                <p className="text-white text-xl font-extralight text-center leading-relaxed">
-                  {quoteText}
-                </p>
-              </div>
-            )}
           </div>
+
+          {/* Quote Overlay - Always below the image */}
+          {showQuoteOverlay && quoteText && (
+            <div className="mx-4 bg-gradient-to-r from-[#9B5EF1] to-[#59368B] rounded-2xl p-4 md:p-6">
+              <p className="text-white text-xl font-extralight text-center leading-relaxed">
+                {quoteText}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>
