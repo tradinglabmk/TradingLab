@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ContactUsForm } from "./ContactUsForm";
 import whiteLogo from "../../../../public/assets/white-logo.png";
 import { FaInstagram, FaYoutube } from "react-icons/fa";
+import Link from "next/link";
 
 export const Footer = () => {
   return (
@@ -48,29 +49,29 @@ export const Footer = () => {
             <h3 className="text-xl font-medium text-white">Мени</h3>
             <ul className="space-y-3 text-gray-400">
               <li>
-                <a href="/#forex-academy" className="hover:text-white transition-colors duration-200">
+                <Link href="/#forex-academy" className="hover:text-white transition-colors duration-200">
                   ЗОШТО Е БЕСПЛАТНО?
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#forex-academy" className="hover:text-white transition-colors duration-200">
+                <Link href="/#forex-academy" className="hover:text-white transition-colors duration-200">
                   КУРС
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#community-experiences" className="hover:text-white transition-colors duration-200">
+                <Link href="/#community-experiences" className="hover:text-white transition-colors duration-200">
                   ИСКУСТВА ОД ЗАЕДНИЦАТА
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/about" className="hover:text-white transition-colors duration-200">
+                <Link href="/about" className="hover:text-white transition-colors duration-200">
                   ЗА НАС
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact-us" className="hover:text-white transition-colors duration-200">
+                <Link href="/contact-us" className="hover:text-white transition-colors duration-200">
                   КОНТАКТ
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
