@@ -31,7 +31,7 @@ const ImageTextSection = ({
     <section
       className={`${backgroundColor} text-white py-16 px-6 md:px-12 lg:px-20`}
     >
-  <div className="max-w-8xl mx-auto grid grid-cols-1 lg:grid-cols-[55%_45%] items-start gap-12 lg:gap-16">
+      <div className="max-w-8xl mx-auto grid grid-cols-1 lg:grid-cols-[55%_45%] items-start gap-12 lg:gap-16">
         {/* Text Content */}
         <div
           className={`w-full lg:w-[85%] space-y-6 ${
@@ -51,7 +51,9 @@ const ImageTextSection = ({
 
         {/* Image Section */}
         <div
-          className={`w-full ${reverseLayout ? "lg:order-1" : ""} lg:col-start-2 lg:col-end-3 flex-shrink-0 lg:min-h-[400px] min-h-[240px] z-20`}
+          className={`w-full ${
+            reverseLayout ? "lg:order-1" : ""
+          } lg:col-start-2 lg:col-end-3 flex-shrink-0 lg:min-h-[400px] min-h-[240px] z-20`}
         >
           <div className="relative w-full h-full">
             <Image

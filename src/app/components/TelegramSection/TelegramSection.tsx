@@ -10,12 +10,13 @@ export default function TelegramSection() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-24 items-center">
           {/* Left side - iPhone image */}
           <div className="flex justify-center lg:justify-start lg:col-span-2 w-full">
-            <div className="relative w-full max-w-sm lg:max-w-md xl:max-w-lg">
+            <div className="relative">
+            {/* <div className="relative w-full max-w-sm lg:max-w-md xl:max-w-lg"> */}
               <Image
                 src="/assets/iphone.png"
                 alt="TradingLab Telegram Group"
-                width={400}
-                height={800}
+                width={200}
+                height={400}
                 className="w-full h-auto object-contain"
                 priority
               />
