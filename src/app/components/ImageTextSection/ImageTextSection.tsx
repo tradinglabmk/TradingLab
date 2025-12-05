@@ -1,5 +1,5 @@
 import Image from "next/image";
-import whyFreeImage from "../../../../public/assets/why_free/image.svg";
+import whyFreeImage from "../../../../public/assets/why_free/image.png";
 
 interface ImageTextSectionProps {
   title?: string;

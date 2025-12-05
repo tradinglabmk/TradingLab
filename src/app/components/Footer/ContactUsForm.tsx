@@ -92,7 +92,7 @@ export const ContactUsForm = () => {
             rows={4}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="ех. Како да се зачленам ?"
+            placeholder="ех. Како да се зачленам?"
             className="w-full p-3 bg-transparent border border-gray-600 rounded-md text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none transition-colors duration-200 resize-none"
           />
         </div>
