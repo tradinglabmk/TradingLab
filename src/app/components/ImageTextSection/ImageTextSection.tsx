@@ -31,7 +31,7 @@ const ImageTextSection = ({
     <section
       className={`${backgroundColor} text-white py-16 px-6 md:px-12 lg:px-20`}
     >
-      <div className="max-w-8xl mx-auto grid grid-cols-1 lg:grid-cols-[55%_45%] items-start gap-12 lg:gap-16">
+      <div className="max-w-8xl mx-auto grid grid-cols-1 lg:grid-cols-[55%_45%] items-center gap-12 lg:gap-16">
         {/* Text Content */}
         <div
           className={`w-full lg:w-[85%] space-y-6 ${
@@ -68,7 +68,7 @@ const ImageTextSection = ({
           {/* Quote Overlay - Always below the image */}
           {showQuoteOverlay && quoteText && (
             <div className="mx-4 bg-gradient-to-r from-[#9B5EF1] to-[#59368B] rounded-2xl p-4 md:p-6">
-              <p className="text-white text-xl font-extralight text-center leading-relaxed">
+              <p className="text-white text-2xl font-extralight text-center leading-relaxed">
                 {quoteText}
               </p>
             </div>
