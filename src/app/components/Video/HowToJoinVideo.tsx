@@ -6,7 +6,8 @@ export const HowToJoinVideo = () => {
       <div className="aspect-video max-w-5xl mx-auto rounded-[40px] overflow-hidden">
         <iframe
           className="w-full h-full"
-          src="https://www.youtube.com/embed/_f9CTBkXGQU?si=p09Mntku72dmMuEQ&autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0&fs=1&disablekb=1"
+          src="https://www.youtube.com/embed/lvCEH8IHcBk?si=ix9g4ssjxiA5FFdW&autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0&fs=1&disablekb=1"
+          // src="https://www.youtube.com/embed/_f9CTBkXGQU?si=p09Mntku72dmMuEQ&autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0&fs=1&disablekb=1"
           title="Why Its Free"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
