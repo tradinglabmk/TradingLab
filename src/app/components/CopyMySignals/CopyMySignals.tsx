@@ -79,7 +79,7 @@ export const CopyMySignals = () => {
             ].map((country, index) => (
               <a
                 key={index}
-                href="https://vigco.co/la-com/H9y0jZLS"
+                href={`${country.name === "Македонија" ? "https://affs.click/MNVbK" : "https://www.xmglobal.com/"}`}
                 className="flex items-center justify-center gap-3 border border-purple-500/30 bg-purple-900/20 text-white px-6 py-4 rounded-2xl text-base font-medium hover:bg-purple-900/40 hover:border-purple-400/50 transition-all duration-300"
               >
                 {country.flag &&
