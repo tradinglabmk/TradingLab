@@ -78,7 +78,7 @@ export const NavigationBar = () => {
         </button>
 
         <nav className="hidden lg:flex">
-          <ul className="flex gap-5 text-white font-normal text-xs relative">
+          <ul className="flex gap-5 text-white font-normal text-sm relative">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <NavigationLink href={link.href} text={link.name} />
