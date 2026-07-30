@@ -2,6 +2,7 @@ import ImageTextSection from "../components/ImageTextSection/ImageTextSection";
 import ForexExplanationSection from "../components/ForexExplanationSection/ForexExplanationSection";
 import CommunityAdvantagesSection from "../components/CommunityAdvantagesSection/CommunityAdvantagesSection";
 import { SEOScrollWrapper } from "../components/SEOScrollWrapper/SEOScrollWrapper";
+import { ApplyWidget } from "../components/ApplyWidget/ApplyWidget";
 
 export default function AboutUs() {
   return (
@@ -38,6 +39,8 @@ export default function AboutUs() {
       <SEOScrollWrapper animationType="fadeInRight" delay={150} duration={0.8}>
         <CommunityAdvantagesSection />
       </SEOScrollWrapper>
+
+      <ApplyWidget />
     </div>
   );
 }

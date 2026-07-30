@@ -1,5 +1,6 @@
 import { SEOScrollWrapper } from "../components/SEOScrollWrapper/SEOScrollWrapper";
 import { ApplicationForm } from "../components/Apply/ApplicationForm";
+import { ApplyWidget } from "../components/ApplyWidget/ApplyWidget";
 
 export default function Apply() {
   return (
@@ -23,6 +24,8 @@ export default function Apply() {
           </div>
         </SEOScrollWrapper>
       </div>
+
+      <ApplyWidget />
     </div>
   );
 }
