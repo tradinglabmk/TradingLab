@@ -27,6 +27,8 @@ export default function AdminDashboard() {
   const [search, setSearch] = useState("");
   const [serviceFilter, setServiceFilter] = useState("all");
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<Application | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   const handleAuth = async () => {
     const res = await fetch("/api/admin/auth", {
@@ -205,10 +207,114 @@ export default function AdminDashboard() {
                 onToggle={() =>
                   setExpandedId(expandedId === app._id ? null : app._id)
                 }
+                onDelete={() => setDeleteTarget(app)}
               />
             ))}
           </div>
         )}
+      </div>
+
+      {/* Delete confirmation modal */}
+      {deleteTarget && (
+        <DeleteModal
+          name={deleteTarget.fullName}
+          deleting={deleting}
+          onCancel={() => setDeleteTarget(null)}
+          onConfirm={async () => {
+            setDeleting(true);
+            try {
+              const res = await fetch("/api/applications", {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id: deleteTarget._id }),
+              });
+              if (res.ok) {
+                setApplications((prev) =>
+                  prev.filter((a) => a._id !== deleteTarget._id),
+                );
+                setExpandedId(null);
+                setDeleteTarget(null);
+              }
+            } catch (err) {
+              console.error("Delete failed:", err);
+            } finally {
+              setDeleting(false);
+            }
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+function DeleteModal({
+  name,
+  deleting,
+  onCancel,
+  onConfirm,
+}: {
+  name: string;
+  deleting: boolean;
+  onCancel: () => void;
+  onConfirm: () => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+        onClick={onCancel}
+      />
+      {/* Modal */}
+      <div className="relative w-full max-w-sm rounded-2xl border border-gray-700/60 bg-[#0f0f17] p-6 shadow-2xl">
+        {/* Icon */}
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-500/10 border border-red-500/20">
+          <svg
+            className="h-6 w-6 text-red-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+            />
+          </svg>
+        </div>
+        <h3 className="text-center text-lg font-semibold text-white mb-1">
+          Избриши апликација
+        </h3>
+        <p className="text-center text-sm text-gray-400 mb-6">
+          Дали сте сигурни дека сакате да ја избришете апликацијата на{" "}
+          <span className="font-medium text-white">{name}</span>?
+          <br />
+          <span className="text-red-400/80">Оваа акција е неповратна.</span>
+        </p>
+        <div className="flex gap-3">
+          <button
+            onClick={onCancel}
+            disabled={deleting}
+            className="flex-1 rounded-xl border border-gray-700/60 bg-white/[0.03] px-4 py-2.5 text-sm text-gray-300 hover:bg-white/[0.06] transition-all duration-200 disabled:opacity-50"
+          >
+            Откажи
+          </button>
+          <button
+            onClick={onConfirm}
+            disabled={deleting}
+            className="flex-1 rounded-xl bg-red-500/20 border border-red-500/30 px-4 py-2.5 text-sm text-red-400 hover:bg-red-500/30 hover:border-red-500/50 transition-all duration-200 disabled:opacity-50 flex items-center justify-center gap-2"
+          >
+            {deleting ? (
+              <>
+                <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-red-400/30 border-t-red-400" />
+                Бришење...
+              </>
+            ) : (
+              "Избриши"
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -239,10 +345,12 @@ function ApplicationCard({
   app,
   isExpanded,
   onToggle,
+  onDelete,
 }: {
   app: Application;
   isExpanded: boolean;
   onToggle: () => void;
+  onDelete: () => void;
 }) {
   const serviceColor =
     app.service === "1-на-1 индивидуално Mentorship"
@@ -378,6 +486,29 @@ function ApplicationCard({
               </div>
             </div>
           )}
+
+          {/* Delete button */}
+          <div className="mt-6 pt-4 border-t border-gray-800/50 flex justify-end">
+            <button
+              onClick={onDelete}
+              className="flex items-center gap-2 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-2.5 text-sm text-red-400 hover:bg-red-500/20 hover:border-red-500/50 transition-all duration-200"
+            >
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                />
+              </svg>
+              Избриши
+            </button>
+          </div>
         </div>
       )}
     </div>

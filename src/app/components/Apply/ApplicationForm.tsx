@@ -18,13 +18,7 @@ const ageGroups = [
   "Над 55 години",
 ];
 
-const contactMethods = [
-  "Е-пошта",
-  "Instagram",
-  "WhatsApp",
-  "Telegram",
-  "Телефонски повик",
-];
+const contactMethods = ["Е-пошта", "Instagram", "Discord"];
 
 const serviceOptions = [
   {
@@ -62,6 +56,7 @@ export const ApplicationForm = () => {
     formState: { errors },
     getValues,
     reset,
+    watch,
   } = useForm<Step1Fields>({
     defaultValues: {
       fullName: "",
@@ -79,6 +74,26 @@ export const ApplicationForm = () => {
     setService("");
     setStep(1);
   };
+
+  const watchedContactMethod = watch("contactMethod");
+
+  const additionalContactMeta: Record<
+    string,
+    { label: string; placeholder: string }
+  > = {
+    Instagram: {
+      label: "Instagram профил *",
+      placeholder: "@instagram_profil",
+    },
+    Discord: {
+      label: "Discord корисничко име *",
+      placeholder: "@discord_username",
+    },
+    "Е-пошта": { label: "Е-пошта адреса *", placeholder: "example@gmail.com" },
+  };
+
+  const contactMeta = additionalContactMeta[watchedContactMethod];
+  const isContactRequired = Boolean(contactMeta);
 
   const onStep1Valid = () => {
     setStep(2);
@@ -387,18 +402,35 @@ export const ApplicationForm = () => {
 
       <div>
         <label className="block text-[13px] text-gray-400 mb-2 uppercase tracking-wider font-medium">
-          Дополнителен контакт
+          {contactMeta ? contactMeta.label : "Дополнителен контакт"}
         </label>
-        <p className="text-xs text-gray-500 mb-2">
-          Напишете го вашиот Instagram профил, телефонски број, WhatsApp или
-          Telegram корисничко име.
-        </p>
+        {!contactMeta && (
+          <p className="text-xs text-gray-500 mb-2">
+            Изберете начин на контакт за да го пополните ова поле.
+          </p>
+        )}
         <input
           type="text"
-          placeholder="@instagram_profil / 070 123 456"
-          className="w-full rounded-xl border border-gray-700/60 bg-white/[0.02] px-4 py-3.5 text-white placeholder-gray-500 backdrop-blur-sm focus:border-[#9F62F8] focus:bg-white/[0.04] focus:shadow-[0_0_15px_-5px_rgba(159,98,248,0.3)] focus:outline-none transition-all duration-300"
-          {...register("additionalContact")}
+          placeholder={
+            contactMeta
+              ? contactMeta.placeholder
+              : "@instagram_profil / 070 123 456"
+          }
+          className={`w-full rounded-xl border ${
+            errors.additionalContact ? "border-red-500" : "border-gray-700/60"
+          } bg-white/[0.02] px-4 py-3.5 text-white placeholder-gray-500 backdrop-blur-sm focus:border-[#9F62F8] focus:bg-white/[0.04] focus:shadow-[0_0_15px_-5px_rgba(159,98,248,0.3)] focus:outline-none transition-all duration-300`}
+          {...register("additionalContact", {
+            validate: (v) =>
+              !isContactRequired ||
+              (v && v.trim() !== "") ||
+              "Полето е задолжително",
+          })}
         />
+        {errors.additionalContact && (
+          <p className="text-red-400 text-xs mt-1.5">
+            {errors.additionalContact.message}
+          </p>
+        )}
       </div>
 
       <div className="pt-3">

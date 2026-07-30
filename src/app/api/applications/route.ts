@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { ObjectId } from "mongodb";
 import { getDb } from "@/utils/server/mongodb";
 
 export async function POST(request: NextRequest) {
@@ -84,6 +85,42 @@ export async function GET() {
     console.error("Error fetching applications:", error);
     return NextResponse.json(
       { error: "Failed to fetch applications" },
+      { status: 500 },
+    );
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const { id } = await request.json();
+
+    if (!id) {
+      return NextResponse.json(
+        { error: "Application ID is required" },
+        { status: 400 },
+      );
+    }
+
+    const db = await getDb();
+    const result = await db
+      .collection("applications")
+      .deleteOne({ _id: new ObjectId(id) });
+
+    if (result.deletedCount === 0) {
+      return NextResponse.json(
+        { error: "Application not found" },
+        { status: 404 },
+      );
+    }
+
+    return NextResponse.json(
+      { success: true, message: "Апликацијата е успешно избришана" },
+      { status: 200 },
+    );
+  } catch (error) {
+    console.error("Error deleting application:", error);
+    return NextResponse.json(
+      { error: "Failed to delete application" },
       { status: 500 },
     );
   }
