@@ -45,7 +45,8 @@ interface Step1Fields {
   fullName: string;
   email: string;
   ageGroup: string;
-  location: string;
+  country: string;
+  city: string;
   contactMethod: string;
   additionalContact: string;
 }
@@ -66,7 +67,8 @@ export const ApplicationForm = () => {
       fullName: "",
       email: "",
       ageGroup: "",
-      location: "",
+      country: "",
+      city: "",
       contactMethod: "",
       additionalContact: "",
     },
@@ -103,7 +105,8 @@ export const ApplicationForm = () => {
         fullName: values.fullName,
         email: values.email,
         ageGroup: values.ageGroup,
-        location: values.location,
+        country: values.country,
+        city: values.city,
         contactMethod: values.contactMethod,
         additionalContact: values.additionalContact,
         service,
@@ -321,21 +324,39 @@ export const ApplicationForm = () => {
 
       <div>
         <label className="block text-[13px] text-gray-400 mb-2 uppercase tracking-wider font-medium">
-          Од која држава и град сте? *
+          Држава *
         </label>
         <input
           type="text"
-          placeholder="Северна Македонија, Скопје"
-          className={`w-full rounded-xl border ${errors.location ? "border-red-500" : "border-gray-700/60"} bg-white/[0.02] px-4 py-3.5 text-white placeholder-gray-500 backdrop-blur-sm focus:border-[#9F62F8] focus:bg-white/[0.04] focus:shadow-[0_0_15px_-5px_rgba(159,98,248,0.3)] focus:outline-none transition-all duration-300`}
-          {...register("location", {
+          placeholder="Македонија"
+          className={`w-full rounded-xl border ${errors.country ? "border-red-500" : "border-gray-700/60"} bg-white/[0.02] px-4 py-3.5 text-white placeholder-gray-500 backdrop-blur-sm focus:border-[#9F62F8] focus:bg-white/[0.04] focus:shadow-[0_0_15px_-5px_rgba(159,98,248,0.3)] focus:outline-none transition-all duration-300`}
+          {...register("country", {
             required: "Полето е задолжително",
             validate: (v) => v.trim() !== "" || "Полето е задолжително",
           })}
         />
-        {errors.location && (
+        {errors.country && (
           <p className="text-red-400 text-xs mt-1.5">
-            {errors.location.message}
+            {errors.country.message}
           </p>
+        )}
+      </div>
+
+      <div>
+        <label className="block text-[13px] text-gray-400 mb-2 uppercase tracking-wider font-medium">
+          Град *
+        </label>
+        <input
+          type="text"
+          placeholder="Скопје"
+          className={`w-full rounded-xl border ${errors.city ? "border-red-500" : "border-gray-700/60"} bg-white/[0.02] px-4 py-3.5 text-white placeholder-gray-500 backdrop-blur-sm focus:border-[#9F62F8] focus:bg-white/[0.04] focus:shadow-[0_0_15px_-5px_rgba(159,98,248,0.3)] focus:outline-none transition-all duration-300`}
+          {...register("city", {
+            required: "Полето е задолжително",
+            validate: (v) => v.trim() !== "" || "Полето е задолжително",
+          })}
+        />
+        {errors.city && (
+          <p className="text-red-400 text-xs mt-1.5">{errors.city.message}</p>
         )}
       </div>
 

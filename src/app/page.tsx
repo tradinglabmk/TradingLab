@@ -1,46 +1,28 @@
-import FAQAccordion from "./components/FAQAccordion/FAQAccordion";
-import GuidanceSection from "./components/GuidanceSection/GuidanceSection";
-import { HeroSection } from "./components/HeroSection/HeroSection";
-import { CopyMySignals } from "./components/CopyMySignals/CopyMySignals";
-import { HowToJoinVideo } from "./components/Video/HowToJoinVideo";
-import WhyFree from "./components/WhyFree/WhyFree";
-import { WhyUs } from "./components/WhyUs/WhyUs";
-import TelegramSection from "./components/TelegramSection/TelegramSection";
-import CommunitySection from "./components/CommunitySection/CommunitySection";
 import { SEOScrollWrapper } from "./components/SEOScrollWrapper/SEOScrollWrapper";
+import { ApplicationForm } from "./components/Apply/ApplicationForm";
 
 export default function Home() {
   return (
-    <div className="w-full">
-      <HeroSection />
-      
-      <SEOScrollWrapper animationType="fadeInUp" delay={0} duration={0.8}>
-        <HowToJoinVideo />
-      </SEOScrollWrapper>
-      
-      <SEOScrollWrapper animationType="slideUp" delay={100} duration={0.9}>
-        <CopyMySignals />
-      </SEOScrollWrapper>
-      
-      <SEOScrollWrapper animationType="fadeInLeft" delay={200} duration={0.8}>
-        <WhyFree />
-      </SEOScrollWrapper>
-      
-      <SEOScrollWrapper animationType="fadeInRight" delay={150} duration={0.9}>
-        <WhyUs />
-      </SEOScrollWrapper>
-      
-      <SEOScrollWrapper animationType="zoomIn" delay={100} duration={0.7}>
-        <TelegramSection />
-      </SEOScrollWrapper>
-      
-      <CommunitySection />
-      
-      <SEOScrollWrapper animationType="slideUp" delay={150} duration={0.9}>
-        <GuidanceSection />
-      </SEOScrollWrapper>
-      
-      <FAQAccordion />
+    <div className="bg-[#101016] min-h-screen">
+      <div className="max-w-3xl mx-auto px-6 py-16">
+        <SEOScrollWrapper animationType="fadeInUp" delay={0} duration={0.8}>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal mb-6">
+            <span style={{ color: "#9F62F8" }}>
+              1-на-1 Mentorship, Group Coaching и Trading Signals
+            </span>
+          </h1>
+          <p className="text-lg md:text-xl font-light leading-relaxed text-gray-200">
+            Пополнете ја апликацијата подолу за да аплицирате за 1-на-1
+            Mentorship, Group Coaching или Trading Signals.
+          </p>
+        </SEOScrollWrapper>
+
+        <SEOScrollWrapper animationType="fadeInUp" delay={150} duration={0.8}>
+          <div className="mt-10">
+            <ApplicationForm />
+          </div>
+        </SEOScrollWrapper>
+      </div>
     </div>
   );
 }

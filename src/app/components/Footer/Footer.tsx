@@ -80,14 +80,6 @@ export const Footer = () => {
                   ЗА НАС
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/contact-us"
-                  className="hover:text-white transition-colors duration-200"
-                >
-                  КОНТАКТ
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
@@ -95,7 +87,7 @@ export const Footer = () => {
         {/* Bottom Section - Copyright */}
         <div className="border-t border-gray-800 pt-8">
           <div className="text-center text-gray-500">
-            <p>© 2025 TradingLabMK. All rights reserved.</p>
+            <p>© 2026 TradingLabMK. All rights reserved.</p>
             <p className="mt-1 text-sm">
               designed by{" "}
               <a

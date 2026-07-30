@@ -7,7 +7,8 @@ export async function POST(request: NextRequest) {
       fullName,
       email,
       ageGroup,
-      location,
+      country,
+      city,
       contactMethod,
       additionalContact,
       service,
@@ -20,7 +21,8 @@ export async function POST(request: NextRequest) {
       !fullName?.trim() ||
       !email?.trim() ||
       !ageGroup?.trim() ||
-      !location?.trim() ||
+      !country?.trim() ||
+      !city?.trim() ||
       !contactMethod?.trim() ||
       !service?.trim()
     ) {
@@ -36,7 +38,8 @@ export async function POST(request: NextRequest) {
       fullName: fullName.trim(),
       email: email.trim(),
       ageGroup: ageGroup.trim(),
-      location: location.trim(),
+      country: country.trim(),
+      city: city.trim(),
       contactMethod: contactMethod.trim(),
       additionalContact: additionalContact?.trim() || "",
       service: service.trim(),

@@ -7,7 +7,8 @@ interface Application {
   fullName: string;
   email: string;
   ageGroup: string;
-  location: string;
+  country: string;
+  city: string;
   contactMethod: string;
   additionalContact?: string;
   service: string;
@@ -57,7 +58,8 @@ export default function AdminDashboard() {
         !search ||
         app.fullName.toLowerCase().includes(search.toLowerCase()) ||
         app.email.toLowerCase().includes(search.toLowerCase()) ||
-        app.location.toLowerCase().includes(search.toLowerCase());
+        app.country.toLowerCase().includes(search.toLowerCase()) ||
+        app.city.toLowerCase().includes(search.toLowerCase());
       const matchesService =
         serviceFilter === "all" || app.service === serviceFilter;
       return matchesSearch && matchesService;
@@ -312,7 +314,8 @@ function ApplicationCard({
         <div className="border-t border-gray-800/50 px-5 py-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <DetailItem label="Возрасна група" value={app.ageGroup} />
-            <DetailItem label="Локација" value={app.location} />
+            <DetailItem label="Држава" value={app.country} />
+            <DetailItem label="Град" value={app.city} />
             <DetailItem label="Контакт метод" value={app.contactMethod} />
             <DetailItem
               label="Дополнителен контакт"

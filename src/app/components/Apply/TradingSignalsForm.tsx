@@ -188,23 +188,11 @@ const expectedResultsOptions = [
 ];
 
 const investmentOptions = [
-  "До 30 €",
-  "Од 30 до 50 €",
-  "Од 50 до 100 €",
-  "Повеќе од 100 €",
-  "Зависи од бројот на сигнали, анализата и поддршката",
-  "Би сакал прво да добијам пробен период",
-  "Моментално само собирам информации",
+  "До 50 € со твој личен брокер",
+  "До 0 € со брокер препоарачан од Trading Lab",
 ];
 
-const communicationOptions = [
-  "Discord",
-  "Telegram",
-  "WhatsApp",
-  "Е-пошта",
-  "Mobile notifications",
-  "Не ми е важно",
-];
+const communicationOptions = ["Discord", "Telegram"];
 
 const startTimeOptions = [
   "Веднаш",

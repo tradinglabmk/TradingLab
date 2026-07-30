@@ -3,7 +3,8 @@ export interface ApplicationInfo {
   fullName: string;
   email: string;
   ageGroup: string;
-  location: string;
+  country: string;
+  city: string;
   contactMethod: string;
   additionalContact?: string;
   service: string;
