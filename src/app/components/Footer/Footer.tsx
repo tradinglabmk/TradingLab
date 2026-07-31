@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ContactUsForm } from "./ContactUsForm";
 import whiteLogo from "../../../../public/assets/white-logo.png";
 import { FaInstagram, FaYoutube } from "react-icons/fa";
 import Link from "next/link";
@@ -20,21 +19,22 @@ export const Footer = () => {
               className="object-contain"
             />
             <p className="text-gray-400 leading-relaxed max-w-sm">
-              Стани дел од најдобрата трејдерска лабораторија во Македонија и пошироко, и почни да заработуваш.
+              Стани дел од најдобрата трејдерска лабораторија во Македонија и
+              пошироко, и почни да заработуваш.
             </p>
-            
+
             {/* Social Media Links */}
             <div className="space-y-3">
-              <a 
-                href="https://www.instagram.com/tradinglab.mk/" 
+              <a
+                href="https://www.instagram.com/tradinglab.mk/"
                 className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-200"
                 target="_blank"
               >
                 <FaInstagram className="text-xl" />
                 <span>INSTAGRAM</span>
               </a>
-              <a 
-                href="https://www.youtube.com/@tradinglabmk" 
+              <a
+                href="https://www.youtube.com/@tradinglabmk"
                 className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-200"
                 target="_blank"
               >
@@ -49,43 +49,53 @@ export const Footer = () => {
             <h3 className="text-xl font-medium text-white">Мени</h3>
             <ul className="space-y-3 text-gray-400">
               <li>
-                <Link href="/#forex-academy" className="hover:text-white transition-colors duration-200">
+                <Link
+                  href="/#forex-academy"
+                  className="hover:text-white transition-colors duration-200"
+                >
                   ЗОШТО Е БЕСПЛАТНО?
                 </Link>
               </li>
               <li>
-                <Link href="/#forex-academy" className="hover:text-white transition-colors duration-200">
+                <Link
+                  href="/#forex-academy"
+                  className="hover:text-white transition-colors duration-200"
+                >
                   КУРС
                 </Link>
               </li>
               <li>
-                <Link href="/#community-experiences" className="hover:text-white transition-colors duration-200">
+                <Link
+                  href="/#community-experiences"
+                  className="hover:text-white transition-colors duration-200"
+                >
                   ИСКУСТВА ОД ЗАЕДНИЦАТА
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-white transition-colors duration-200">
+                <Link
+                  href="/about"
+                  className="hover:text-white transition-colors duration-200"
+                >
                   ЗА НАС
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact-us" className="hover:text-white transition-colors duration-200">
-                  КОНТАКТ
                 </Link>
               </li>
             </ul>
           </div>
-
-          {/* Right Section - Contact Form */}
-          <ContactUsForm />
         </div>
 
         {/* Bottom Section - Copyright */}
         <div className="border-t border-gray-800 pt-8">
           <div className="text-center text-gray-500">
-            <p>© 2025 TradingLabMK. All rights reserved.</p>
+            <p>© 2026 TradingLabMK. All rights reserved.</p>
             <p className="mt-1 text-sm">
-              designed by <a href="#" className="underline hover:text-white transition-colors duration-200">Adrijan G</a>
+              designed by{" "}
+              <a
+                href="#"
+                className="underline hover:text-white transition-colors duration-200"
+              >
+                Adrijan G
+              </a>
             </p>
           </div>
         </div>

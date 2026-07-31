@@ -10,15 +10,22 @@ interface NavigationLinkProps {
   onClick?: () => void;
 }
 
-export const NavigationLink = ({ href, text, className = "", onClick }: NavigationLinkProps) => {
+export const NavigationLink = ({
+  href,
+  text,
+  className = "",
+  onClick,
+}: NavigationLinkProps) => {
   const pathname = usePathname();
 
   return (
     <Link
       href={href}
       className={`transition ${
-        pathname === href ? "text-[#9F62F8] font-normal" : " font-extralight hover:text-[#c09afa] text-white"
-      } ${className} text-lg`}
+        pathname === href
+          ? "text-[#9F62F8] font-normal"
+          : " font-extralight hover:text-[#c09afa] text-white"
+      } ${className}`}
       onClick={onClick}
     >
       {text}
