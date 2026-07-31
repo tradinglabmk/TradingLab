@@ -29,14 +29,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-black">
-      <body
-        className={`${roboto.variable} antialiased`}
-      >
+      <head suppressHydrationWarning>
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script
+          id="cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="05799d54-6816-4a2b-8244-b4e52a8e897d"
+          data-blockingmode="auto"
+          type="text/javascript"
+          suppressHydrationWarning
+        />
+      </head>
+      <body className={`${roboto.variable} antialiased`}>
         <Toaster position="top-center" />
         <NavigationBar />
-        <div className="pt-[80px]">
-          {children}
-        </div>
+        <div className="pt-[80px]">{children}</div>
         <Footer />
 
         <Script id="meta-pixel" strategy="afterInteractive">
