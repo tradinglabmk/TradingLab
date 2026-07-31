@@ -8,9 +8,7 @@ import { WhyUs } from "../components/WhyUs/WhyUs";
 import TelegramSection from "../components/TelegramSection/TelegramSection";
 import CommunitySection from "../components/CommunitySection/CommunitySection";
 import { SEOScrollWrapper } from "../components/SEOScrollWrapper/SEOScrollWrapper";
-import Link from "next/link";
 import { ApplyWidget } from "../components/ApplyWidget/ApplyWidget";
-
 export default function HomePage() {
   return (
     <div className="w-full">
