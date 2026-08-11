@@ -19,7 +19,9 @@ interface Application {
 }
 
 export default function AdminDashboard() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const [authLoading, setAuthLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [authError, setAuthError] = useState("");
   const [applications, setApplications] = useState<Application[]>([]);
@@ -29,18 +31,31 @@ export default function AdminDashboard() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<Application | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const PAGE_SIZE = 10;
+
+  useEffect(() => {
+    setIsAuthenticated(sessionStorage.getItem("adminAuth") === "1");
+  }, []);
 
   const handleAuth = async () => {
-    const res = await fetch("/api/admin/auth", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
-    });
-    if (res.ok) {
-      setIsAuthenticated(true);
-      setAuthError("");
-    } else {
-      setAuthError("Погрешна лозинка");
+    setAuthLoading(true);
+    setAuthError("");
+    try {
+      const res = await fetch("/api/admin/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      });
+      if (res.ok) {
+        sessionStorage.setItem("adminAuth", "1");
+        setIsAuthenticated(true);
+        setAuthError("");
+      } else {
+        setAuthError("Погрешна лозинка");
+      }
+    } finally {
+      setAuthLoading(false);
     }
   };
 
@@ -55,6 +70,7 @@ export default function AdminDashboard() {
   }, [isAuthenticated]);
 
   const filtered = useMemo(() => {
+    setCurrentPage(1);
     return applications.filter((app) => {
       const matchesSearch =
         !search ||
@@ -67,6 +83,17 @@ export default function AdminDashboard() {
       return matchesSearch && matchesService;
     });
   }, [applications, search, serviceFilter]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const paginated = filtered.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE,
+  );
+
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const stats = useMemo(() => {
     const total = applications.length;
@@ -82,6 +109,47 @@ export default function AdminDashboard() {
     return { total, mentorship, group, signals };
   }, [applications]);
 
+  if (isAuthenticated === null) {
+    return (
+      <div className="bg-[#0a0a0f] min-h-screen">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+          <div className="mb-8">
+            <div className="h-8 w-40 rounded-xl bg-white/[0.05] animate-pulse mb-2" />
+            <div className="h-4 w-56 rounded-lg bg-white/[0.03] animate-pulse" />
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            {[...Array(4)].map((_, i) => (
+              <div
+                key={i}
+                className="rounded-2xl border border-gray-800/50 bg-white/[0.02] p-5"
+              >
+                <div className="h-3 w-16 rounded bg-white/[0.05] animate-pulse mb-3" />
+                <div className="h-8 w-10 rounded bg-white/[0.05] animate-pulse" />
+              </div>
+            ))}
+          </div>
+          <div className="space-y-3">
+            {[...Array(5)].map((_, i) => (
+              <div
+                key={i}
+                className="rounded-2xl border border-gray-800/50 bg-white/[0.02] px-5 py-4"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="h-10 w-10 rounded-full bg-white/[0.05] animate-pulse shrink-0" />
+                  <div className="flex-1 space-y-2">
+                    <div className="h-4 w-36 rounded bg-white/[0.05] animate-pulse" />
+                    <div className="h-3 w-48 rounded bg-white/[0.03] animate-pulse" />
+                  </div>
+                  <div className="h-6 w-20 rounded-full bg-white/[0.05] animate-pulse" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (!isAuthenticated) {
     return (
       <div className="bg-[#0a0a0f] min-h-screen flex items-center justify-center px-4">
@@ -95,22 +163,73 @@ export default function AdminDashboard() {
             </p>
           </div>
           <div className="space-y-4">
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleAuth()}
-              placeholder="Лозинка"
-              className="w-full rounded-xl border border-gray-700/60 bg-white/[0.02] px-4 py-3.5 text-white placeholder-gray-500 focus:border-[#9F62F8] focus:outline-none transition-all duration-300"
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleAuth()}
+                placeholder="Лозинка"
+                className="w-full rounded-xl border border-gray-700/60 bg-white/[0.02] px-4 py-3.5 pr-12 text-white placeholder-gray-500 focus:border-[#9F62F8] focus:outline-none transition-all duration-300"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((v) => !v)}
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors"
+                tabIndex={-1}
+              >
+                {showPassword ? (
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
             {authError && (
               <p className="text-red-400 text-sm text-center">{authError}</p>
             )}
             <button
               onClick={handleAuth}
-              className="w-full rounded-xl bg-gradient-to-r from-[#9F62F8] to-[#7B3FE4] px-4 py-3.5 text-white font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(159,98,248,0.4)]"
+              disabled={authLoading}
+              className="w-full cursor-pointer rounded-xl bg-gradient-to-r from-[#9F62F8] to-[#7B3FE4] px-4 py-3.5 text-white font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(159,98,248,0.4)] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
-              Влези
+              {authLoading ? (
+                <>
+                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                  Се проверува...
+                </>
+              ) : (
+                "Најава"
+              )}
             </button>
           </div>
         </div>
@@ -190,27 +309,131 @@ export default function AdminDashboard() {
 
         {/* Applications list */}
         {loading ? (
-          <div className="flex items-center justify-center py-20">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-700 border-t-[#9F62F8]" />
+          <div className="space-y-3">
+            {[...Array(5)].map((_, i) => (
+              <div
+                key={i}
+                className="rounded-2xl border border-gray-800/50 bg-white/[0.02] px-5 py-4"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="h-10 w-10 rounded-full bg-white/[0.05] animate-pulse shrink-0" />
+                  <div className="flex-1 space-y-2">
+                    <div className="h-4 w-36 rounded bg-white/[0.05] animate-pulse" />
+                    <div className="h-3 w-48 rounded bg-white/[0.03] animate-pulse" />
+                  </div>
+                  <div className="h-6 w-20 rounded-full bg-white/[0.05] animate-pulse" />
+                </div>
+              </div>
+            ))}
           </div>
         ) : filtered.length === 0 ? (
           <div className="rounded-2xl border border-gray-800/50 bg-white/[0.02] p-12 text-center">
             <p className="text-gray-500">Нема пронајдени апликации</p>
           </div>
         ) : (
-          <div className="space-y-3">
-            {filtered.map((app) => (
-              <ApplicationCard
-                key={app._id}
-                app={app}
-                isExpanded={expandedId === app._id}
-                onToggle={() =>
-                  setExpandedId(expandedId === app._id ? null : app._id)
-                }
-                onDelete={() => setDeleteTarget(app)}
-              />
-            ))}
-          </div>
+          <>
+            <div className="space-y-3">
+              {paginated.map((app) => (
+                <ApplicationCard
+                  key={app._id}
+                  app={app}
+                  isExpanded={expandedId === app._id}
+                  onToggle={() =>
+                    setExpandedId(expandedId === app._id ? null : app._id)
+                  }
+                  onDelete={() => setDeleteTarget(app)}
+                />
+              ))}
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex items-center justify-center gap-2 mt-6">
+                <button
+                  onClick={() => goToPage(Math.max(1, currentPage - 1))}
+                  disabled={currentPage === 1}
+                  className="flex cursor-pointer items-center gap-1.5 rounded-xl border border-gray-700/60 bg-white/[0.02] px-4 py-2 text-sm text-gray-400 hover:text-white hover:border-gray-600 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                  Назад
+                </button>
+
+                <div className="flex items-center gap-1">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1)
+                    .filter(
+                      (p) =>
+                        p === 1 ||
+                        p === totalPages ||
+                        Math.abs(p - currentPage) <= 1,
+                    )
+                    .reduce<(number | "...")[]>((acc, p, idx, arr) => {
+                      if (
+                        idx > 0 &&
+                        (p as number) - (arr[idx - 1] as number) > 1
+                      )
+                        acc.push("...");
+                      acc.push(p);
+                      return acc;
+                    }, [])
+                    .map((p, idx) =>
+                      p === "..." ? (
+                        <span
+                          key={`dots-${idx}`}
+                          className="px-2 text-gray-600 text-sm"
+                        >
+                          …
+                        </span>
+                      ) : (
+                        <button
+                          key={p}
+                          onClick={() => goToPage(p as number)}
+                          className={`cursor-pointer h-9 w-9 rounded-xl text-sm font-medium transition-all duration-200 ${
+                            currentPage === p
+                              ? "bg-[#9F62F8] text-white shadow-[0_0_16px_-4px_rgba(159,98,248,0.7)]"
+                              : "border border-gray-700/60 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gray-600"
+                          }`}
+                        >
+                          {p}
+                        </button>
+                      ),
+                    )}
+                </div>
+
+                <button
+                  onClick={() => goToPage(Math.min(totalPages, currentPage + 1))}
+                  disabled={currentPage === totalPages}
+                  className="flex cursor-pointer items-center gap-1.5 rounded-xl border border-gray-700/60 bg-white/[0.02] px-4 py-2 text-sm text-gray-400 hover:text-white hover:border-gray-600 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  Следно
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              </div>
+            )}
+          </>
         )}
       </div>
 
