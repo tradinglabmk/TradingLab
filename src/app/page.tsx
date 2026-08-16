@@ -1,7 +1,11 @@
+import { redirect } from "next/navigation";
 import { SEOScrollWrapper } from "./components/SEOScrollWrapper/SEOScrollWrapper";
 import { ApplicationForm } from "./components/Apply/ApplicationForm";
 
 export default function Home() {
+  if (process.env.NEXT_PUBLIC_SHOW_APPLY_FORM !== "true") {
+    redirect("/home");
+  }
   return (
     <div className="bg-[#101016] min-h-screen">
       <div className="max-w-3xl mx-auto px-6 py-16">
