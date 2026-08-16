@@ -8,8 +8,10 @@ import { Menu, X } from "lucide-react";
 import { NavigationLink } from "./NavigationLink";
 import { Button } from "../Button/Button";
 
+const showApplyForm = process.env.NEXT_PUBLIC_SHOW_APPLY_FORM === "true";
+
 const navLinks = [
-  { name: "Аплицирај", href: "/" },
+  ...(showApplyForm ? [{ name: "Аплицирај", href: "/" }] : []),
   { name: "Едукација", href: "/home" },
   { name: "Зошто е бесплатно?", href: "/home#why-free" },
   { name: "Курс", href: "/home#forex-academy" },
