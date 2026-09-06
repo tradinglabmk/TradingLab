@@ -13,7 +13,6 @@ const showApplyForm = process.env.NEXT_PUBLIC_SHOW_APPLY_FORM === "true";
 const navLinks = [
   ...(showApplyForm ? [{ name: "Аплицирај", href: "/" }] : []),
   { name: "Едукација", href: "/home" },
-  { name: "Зошто е бесплатно?", href: "/home#why-free" },
   { name: "Курс", href: "/home#forex-academy" },
   { name: "Искуства од заедницата", href: "/home#community-experiences" },
   { name: "За нас", href: "/about" },
@@ -90,9 +89,10 @@ export const NavigationBar = () => {
         </nav>
 
         <Button
-          body="БЕСПЛАТНИ СИГНАЛИ"
+          body="ПРИДРУЖИ СЕ"
           variant="primary"
-          href="https://m.me/61573558067668"
+          href="/pricing"
+          external={false}
           className="hidden lg:block"
         />
       </div>
@@ -116,9 +116,10 @@ export const NavigationBar = () => {
 
           <div>
             <Button
-              body="БЕСПЛАТНИ СИГНАЛИ"
+              body="ПРИДРУЖИ СЕ"
               variant="primary"
-              href="https://m.me/61573558067668"
+              href="/pricing"
+              external={false}
               className="min-w-[250px]"
             />
           </div>

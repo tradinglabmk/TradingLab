@@ -1,7 +1,6 @@
 import FAQAccordion from "../components/FAQAccordion/FAQAccordion";
 import GuidanceSection from "../components/GuidanceSection/GuidanceSection";
 import { HeroSection } from "../components/HeroSection/HeroSection";
-import { CopyMySignals } from "../components/CopyMySignals/CopyMySignals";
 import { HowToJoinVideo } from "../components/Video/HowToJoinVideo";
 import WhyFree from "../components/WhyFree/WhyFree";
 import { WhyUs } from "../components/WhyUs/WhyUs";
@@ -9,6 +8,9 @@ import TelegramSection from "../components/TelegramSection/TelegramSection";
 import CommunitySection from "../components/CommunitySection/CommunitySection";
 import { SEOScrollWrapper } from "../components/SEOScrollWrapper/SEOScrollWrapper";
 import { ApplyWidget } from "../components/ApplyWidget/ApplyWidget";
+import { PricingSection } from "../components/Pricing/PricingSection";
+
+const showPricing = process.env.NEXT_PUBLIC_SHOW_PRICING === "true";
 export default function HomePage() {
   return (
     <div className="w-full">
@@ -18,9 +20,11 @@ export default function HomePage() {
         <HowToJoinVideo />
       </SEOScrollWrapper>
 
-      <SEOScrollWrapper animationType="slideUp" delay={100} duration={0.9}>
-        <CopyMySignals />
-      </SEOScrollWrapper>
+      {showPricing && (
+        <SEOScrollWrapper animationType="fadeInUp" delay={100} duration={0.9}>
+          <PricingSection />
+        </SEOScrollWrapper>
+      )}
 
       <SEOScrollWrapper animationType="fadeInLeft" delay={200} duration={0.8}>
         <WhyFree />

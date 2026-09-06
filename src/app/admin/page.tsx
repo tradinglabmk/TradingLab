@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import { PaymentsView } from "./PaymentsView";
+
+type AdminTab = "applications" | "payments";
 
 interface Application {
   _id: string;
@@ -24,6 +27,7 @@ export default function AdminDashboard() {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [authError, setAuthError] = useState("");
+  const [tab, setTab] = useState<AdminTab>("applications");
   const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
@@ -241,197 +245,234 @@ export default function AdminDashboard() {
     <div className="bg-[#0a0a0f] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white">Апликации</h1>
-          <p className="text-gray-500 mt-1">Преглед на сите апликации</p>
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold text-white">Админ панел</h1>
+          <p className="text-gray-500 mt-1">Преглед на апликации и уплати</p>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <StatCard label="Вкупно" value={stats.total} color="#9F62F8" />
-          <StatCard
-            label="Mentorship"
-            value={stats.mentorship}
-            color="#8B5CF6"
-          />
-          <StatCard
-            label="Group Coaching"
-            value={stats.group}
-            color="#6366F1"
-          />
-          <StatCard
-            label="Trading Signals"
-            value={stats.signals}
-            color="#A78BFA"
-          />
-        </div>
-
-        {/* Filters */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-6">
-          <div className="relative flex-1">
-            <svg
-              className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Пребарај по име, email, локација..."
-              className="w-full rounded-xl border border-gray-700/60 bg-white/[0.03] pl-10 pr-4 py-3 text-sm text-white placeholder-gray-500 focus:border-[#9F62F8] focus:outline-none transition-all duration-300"
-            />
-          </div>
-          <select
-            value={serviceFilter}
-            onChange={(e) => setServiceFilter(e.target.value)}
-            className="rounded-xl border border-gray-700/60 bg-[#0a0a0f] px-4 py-3 text-sm text-white focus:border-[#9F62F8] focus:outline-none transition-all duration-300"
+        {/* Tabs */}
+        <div className="mb-8 inline-flex rounded-xl border border-gray-700/60 bg-white/[0.02] p-1">
+          <button
+            onClick={() => setTab("applications")}
+            className={`cursor-pointer rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${
+              tab === "applications"
+                ? "bg-[#9F62F8] text-white shadow-[0_0_16px_-4px_rgba(159,98,248,0.7)]"
+                : "text-gray-400 hover:text-white"
+            }`}
           >
-            <option value="all">Сите услуги</option>
-            <option value="1-на-1 индивидуално Mentorship">Mentorship</option>
-            <option value="Group Coaching во мала група">Group Coaching</option>
-            <option value="Trading Signals">Trading Signals</option>
-          </select>
+            Апликации
+          </button>
+          <button
+            onClick={() => setTab("payments")}
+            className={`cursor-pointer rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${
+              tab === "payments"
+                ? "bg-[#9F62F8] text-white shadow-[0_0_16px_-4px_rgba(159,98,248,0.7)]"
+                : "text-gray-400 hover:text-white"
+            }`}
+          >
+            Уплати
+          </button>
         </div>
 
-        {/* Results count */}
-        <p className="text-sm text-gray-500 mb-4">
-          {filtered.length} {filtered.length === 1 ? "резултат" : "резултати"}
-        </p>
+        {tab === "payments" && <PaymentsView />}
 
-        {/* Applications list */}
-        {loading ? (
-          <div className="space-y-3">
-            {[...Array(5)].map((_, i) => (
-              <div
-                key={i}
-                className="rounded-2xl border border-gray-800/50 bg-white/[0.02] px-5 py-4"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="h-10 w-10 rounded-full bg-white/[0.05] animate-pulse shrink-0" />
-                  <div className="flex-1 space-y-2">
-                    <div className="h-4 w-36 rounded bg-white/[0.05] animate-pulse" />
-                    <div className="h-3 w-48 rounded bg-white/[0.03] animate-pulse" />
-                  </div>
-                  <div className="h-6 w-20 rounded-full bg-white/[0.05] animate-pulse" />
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : filtered.length === 0 ? (
-          <div className="rounded-2xl border border-gray-800/50 bg-white/[0.02] p-12 text-center">
-            <p className="text-gray-500">Нема пронајдени апликации</p>
-          </div>
-        ) : (
+        {tab === "applications" && (
           <>
-            <div className="space-y-3">
-              {paginated.map((app) => (
-                <ApplicationCard
-                  key={app._id}
-                  app={app}
-                  isExpanded={expandedId === app._id}
-                  onToggle={() =>
-                    setExpandedId(expandedId === app._id ? null : app._id)
-                  }
-                  onDelete={() => setDeleteTarget(app)}
-                />
-              ))}
+            {/* Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+              <StatCard label="Вкупно" value={stats.total} color="#9F62F8" />
+              <StatCard
+                label="Mentorship"
+                value={stats.mentorship}
+                color="#8B5CF6"
+              />
+              <StatCard
+                label="Group Coaching"
+                value={stats.group}
+                color="#6366F1"
+              />
+              <StatCard
+                label="Trading Signals"
+                value={stats.signals}
+                color="#A78BFA"
+              />
             </div>
 
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="flex items-center justify-center gap-2 mt-6">
-                <button
-                  onClick={() => goToPage(Math.max(1, currentPage - 1))}
-                  disabled={currentPage === 1}
-                  className="flex cursor-pointer items-center gap-1.5 rounded-xl border border-gray-700/60 bg-white/[0.02] px-4 py-2 text-sm text-gray-400 hover:text-white hover:border-gray-600 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+            {/* Filters */}
+            <div className="flex flex-col sm:flex-row gap-3 mb-6">
+              <div className="relative flex-1">
+                <svg
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
                 >
-                  <svg
-                    className="h-4 w-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15 19l-7-7 7-7"
-                    />
-                  </svg>
-                  Назад
-                </button>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Пребарај по име, email, локација..."
+                  className="w-full rounded-xl border border-gray-700/60 bg-white/[0.03] pl-10 pr-4 py-3 text-sm text-white placeholder-gray-500 focus:border-[#9F62F8] focus:outline-none transition-all duration-300"
+                />
+              </div>
+              <select
+                value={serviceFilter}
+                onChange={(e) => setServiceFilter(e.target.value)}
+                className="rounded-xl border border-gray-700/60 bg-[#0a0a0f] px-4 py-3 text-sm text-white focus:border-[#9F62F8] focus:outline-none transition-all duration-300"
+              >
+                <option value="all">Сите услуги</option>
+                <option value="1-на-1 индивидуално Mentorship">
+                  Mentorship
+                </option>
+                <option value="Group Coaching во мала група">
+                  Group Coaching
+                </option>
+                <option value="Trading Signals">Trading Signals</option>
+              </select>
+            </div>
 
-                <div className="flex items-center gap-1">
-                  {Array.from({ length: totalPages }, (_, i) => i + 1)
-                    .filter(
-                      (p) =>
-                        p === 1 ||
-                        p === totalPages ||
-                        Math.abs(p - currentPage) <= 1,
-                    )
-                    .reduce<(number | "...")[]>((acc, p, idx, arr) => {
-                      if (
-                        idx > 0 &&
-                        (p as number) - (arr[idx - 1] as number) > 1
-                      )
-                        acc.push("...");
-                      acc.push(p);
-                      return acc;
-                    }, [])
-                    .map((p, idx) =>
-                      p === "..." ? (
-                        <span
-                          key={`dots-${idx}`}
-                          className="px-2 text-gray-600 text-sm"
-                        >
-                          …
-                        </span>
-                      ) : (
-                        <button
-                          key={p}
-                          onClick={() => goToPage(p as number)}
-                          className={`cursor-pointer h-9 w-9 rounded-xl text-sm font-medium transition-all duration-200 ${
-                            currentPage === p
-                              ? "bg-[#9F62F8] text-white shadow-[0_0_16px_-4px_rgba(159,98,248,0.7)]"
-                              : "border border-gray-700/60 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gray-600"
-                          }`}
-                        >
-                          {p}
-                        </button>
-                      ),
-                    )}
+            {/* Results count */}
+            <p className="text-sm text-gray-500 mb-4">
+              {filtered.length}{" "}
+              {filtered.length === 1 ? "резултат" : "резултати"}
+            </p>
+
+            {/* Applications list */}
+            {loading ? (
+              <div className="space-y-3">
+                {[...Array(5)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="rounded-2xl border border-gray-800/50 bg-white/[0.02] px-5 py-4"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="h-10 w-10 rounded-full bg-white/[0.05] animate-pulse shrink-0" />
+                      <div className="flex-1 space-y-2">
+                        <div className="h-4 w-36 rounded bg-white/[0.05] animate-pulse" />
+                        <div className="h-3 w-48 rounded bg-white/[0.03] animate-pulse" />
+                      </div>
+                      <div className="h-6 w-20 rounded-full bg-white/[0.05] animate-pulse" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : filtered.length === 0 ? (
+              <div className="rounded-2xl border border-gray-800/50 bg-white/[0.02] p-12 text-center">
+                <p className="text-gray-500">Нема пронајдени апликации</p>
+              </div>
+            ) : (
+              <>
+                <div className="space-y-3">
+                  {paginated.map((app) => (
+                    <ApplicationCard
+                      key={app._id}
+                      app={app}
+                      isExpanded={expandedId === app._id}
+                      onToggle={() =>
+                        setExpandedId(expandedId === app._id ? null : app._id)
+                      }
+                      onDelete={() => setDeleteTarget(app)}
+                    />
+                  ))}
                 </div>
 
-                <button
-                  onClick={() => goToPage(Math.min(totalPages, currentPage + 1))}
-                  disabled={currentPage === totalPages}
-                  className="flex cursor-pointer items-center gap-1.5 rounded-xl border border-gray-700/60 bg-white/[0.02] px-4 py-2 text-sm text-gray-400 hover:text-white hover:border-gray-600 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
-                >
-                  Следно
-                  <svg
-                    className="h-4 w-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </button>
-              </div>
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-center gap-2 mt-6">
+                    <button
+                      onClick={() => goToPage(Math.max(1, currentPage - 1))}
+                      disabled={currentPage === 1}
+                      className="flex cursor-pointer items-center gap-1.5 rounded-xl border border-gray-700/60 bg-white/[0.02] px-4 py-2 text-sm text-gray-400 hover:text-white hover:border-gray-600 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+                    >
+                      <svg
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15 19l-7-7 7-7"
+                        />
+                      </svg>
+                      Назад
+                    </button>
+
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: totalPages }, (_, i) => i + 1)
+                        .filter(
+                          (p) =>
+                            p === 1 ||
+                            p === totalPages ||
+                            Math.abs(p - currentPage) <= 1,
+                        )
+                        .reduce<(number | "...")[]>((acc, p, idx, arr) => {
+                          if (
+                            idx > 0 &&
+                            (p as number) - (arr[idx - 1] as number) > 1
+                          )
+                            acc.push("...");
+                          acc.push(p);
+                          return acc;
+                        }, [])
+                        .map((p, idx) =>
+                          p === "..." ? (
+                            <span
+                              key={`dots-${idx}`}
+                              className="px-2 text-gray-600 text-sm"
+                            >
+                              …
+                            </span>
+                          ) : (
+                            <button
+                              key={p}
+                              onClick={() => goToPage(p as number)}
+                              className={`cursor-pointer h-9 w-9 rounded-xl text-sm font-medium transition-all duration-200 ${
+                                currentPage === p
+                                  ? "bg-[#9F62F8] text-white shadow-[0_0_16px_-4px_rgba(159,98,248,0.7)]"
+                                  : "border border-gray-700/60 bg-white/[0.02] text-gray-400 hover:text-white hover:border-gray-600"
+                              }`}
+                            >
+                              {p}
+                            </button>
+                          ),
+                        )}
+                    </div>
+
+                    <button
+                      onClick={() =>
+                        goToPage(Math.min(totalPages, currentPage + 1))
+                      }
+                      disabled={currentPage === totalPages}
+                      className="flex cursor-pointer items-center gap-1.5 rounded-xl border border-gray-700/60 bg-white/[0.02] px-4 py-2 text-sm text-gray-400 hover:text-white hover:border-gray-600 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+                    >
+                      Следно
+                      <svg
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                )}
+              </>
             )}
           </>
         )}

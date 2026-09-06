@@ -76,7 +76,7 @@ export const HeroSection = () => {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-fadeInUp" style={{ animationDelay: '1.5s', animationFillMode: 'both' }}>
             <Button 
-              body="БЕСПЛАТНИ СИГНАЛИ" 
+              body="ПРИДРУЖИ СЕ" 
               variant="primary"
               className="min-w-[200px]"
               href="https://m.me/61573558067668"

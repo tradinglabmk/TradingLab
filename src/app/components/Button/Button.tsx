@@ -1,9 +1,12 @@
+import Link from "next/link";
+
 interface Button {
   body: string;
   variant?: "primary" | "secondary";
   className?: string;
   onClick?: () => void;
     href?: string;
+    external?: boolean;
 }
 
 export const Button = ({
@@ -12,6 +15,7 @@ export const Button = ({
   variant = "primary",
   className = "",
   onClick,
+  external = true,
 }: Button) => {
   const baseStyles =
     "uppercase text-center font-normal text-[16px] px-6";
@@ -32,9 +36,13 @@ export const Button = ({
       className={`${baseStyles} ${variantStyles} ${className}`}
       onClick={onClick}
     >
-        <a href={href} target="_blank" rel="noopener noreferrer">
-            {body}
-        </a>
+        {external ? (
+          <a href={href} target="_blank" rel="noopener noreferrer">
+              {body}
+          </a>
+        ) : (
+          <Link href={href ?? "#"}>{body}</Link>
+        )}
     </button>
   );
 };
