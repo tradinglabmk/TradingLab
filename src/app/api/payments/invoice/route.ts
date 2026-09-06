@@ -23,9 +23,10 @@ function generateInvoicePdf(payment: {
   currency: string;
 }): Promise<Buffer> {
   return new Promise((resolve, reject) => {
-    const doc = new PDFDocument({ size: "A4", margin: 50 });
-    doc.registerFont("Roboto", FONT_PATH);
-    doc.font("Roboto");
+    // Pass our font directly so pdfkit never falls back to its built-in
+    // Helvetica, which crashes on Vercel (lazy-requires a data file that
+    // isn't bundled: "Cannot find module '#standard-fonts/Helvetica'").
+    const doc = new PDFDocument({ size: "A4", margin: 50, font: FONT_PATH });
 
     const boldText = (
       text: string,
@@ -42,7 +43,7 @@ function generateInvoicePdf(payment: {
     doc.on("end", () => resolve(Buffer.concat(chunks)));
     doc.on("error", reject);
 
-    const issueDate = new Date(payment.createdAt).toLocaleDateString("mk-MK", {
+    const issueDate = new Date(payment.createdAt).toLocaleDateString("en-GB", {
       day: "numeric",
       month: "long",
       year: "numeric",
@@ -50,21 +51,21 @@ function generateInvoicePdf(payment: {
     const amount = (payment.amount / 100).toFixed(2);
 
     doc.fontSize(22);
-    boldText("ФАКТУРА", 50, doc.y, { align: "left" });
+    boldText("INVOICE", 50, doc.y, { align: "left" });
     doc.moveDown(0.5);
     doc.fontSize(10);
-    boldText(`Број на фактура: ${payment.invoiceNumber ?? "—"}`, 50, doc.y);
+    boldText(`Invoice number: ${payment.invoiceNumber ?? "—"}`, 50, doc.y);
     doc
       .fontSize(10)
-      .text(`Датум на издавање: ${issueDate}`)
-      .text(`Датум на достасување: ${issueDate}`);
+      .text(`Date of issue: ${issueDate}`)
+      .text(`Date due: ${issueDate}`);
 
     doc.moveDown(1.5);
     const colX = [50, 300];
     doc.fontSize(11);
-    boldText("Продавач", colX[0], doc.y);
+    boldText("Seller", colX[0], doc.y);
     const sellerY = doc.y;
-    boldText("Купувач", colX[1], sellerY);
+    boldText("Bill to", colX[1], sellerY);
 
     doc.fontSize(10);
     doc.text(BUSINESS_INFO.name, colX[0]);
@@ -77,7 +78,7 @@ function generateInvoicePdf(payment: {
     doc.moveDown(2);
     doc.fontSize(13);
     boldText(
-      `${payment.currency} ${amount} доспева на ${issueDate}`,
+      `${payment.currency} ${amount} due on ${issueDate}`,
       50,
       doc.y,
     );
@@ -85,17 +86,17 @@ function generateInvoicePdf(payment: {
     doc.moveDown(1);
     const tableTop = doc.y;
     doc.fontSize(10);
-    doc.text("Опис", 50, tableTop);
-    doc.text("Кол.", 320, tableTop);
-    doc.text("Ед. цена", 380, tableTop);
-    doc.text("Износ", 470, tableTop);
+    doc.text("Description", 50, tableTop);
+    doc.text("Qty", 320, tableTop);
+    doc.text("Unit price", 380, tableTop);
+    doc.text("Amount", 470, tableTop);
     doc
       .moveTo(50, tableTop + 15)
       .lineTo(545, tableTop + 15)
       .stroke();
 
     const rowY = tableTop + 25;
-    doc.text(payment.planTitle || "Уплата", 50, rowY);
+    doc.text(payment.planTitle || "Payment", 50, rowY);
     doc.text("1", 320, rowY);
     doc.text(`${payment.currency} ${amount}`, 380, rowY);
     doc.text(`${payment.currency} ${amount}`, 470, rowY);
@@ -104,17 +105,17 @@ function generateInvoicePdf(payment: {
       .moveTo(300, rowY + 20)
       .lineTo(545, rowY + 20)
       .stroke();
-    doc.text("Меѓузбир", 380, rowY + 30);
+    doc.text("Subtotal", 380, rowY + 30);
     doc.text(`${payment.currency} ${amount}`, 470, rowY + 30);
-    boldText("Вкупно", 380, rowY + 45);
+    boldText("Total", 380, rowY + 45);
     boldText(`${payment.currency} ${amount}`, 470, rowY + 45);
-    boldText("Платено", 380, rowY + 60);
+    boldText("Paid", 380, rowY + 60);
     boldText(`${payment.currency} ${amount}`, 470, rowY + 60);
 
     doc.moveDown(4);
     doc
       .fontSize(9)
-      .text("Ви благодариме што избравте TradingLab.mk!", 50, doc.y, {
+      .text("Thank you for choosing TradingLab.mk!", 50, doc.y, {
         align: "center",
         width: 495,
       });
