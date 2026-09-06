@@ -4,7 +4,7 @@ import { ApplicationForm } from "./components/Apply/ApplicationForm";
 
 export default function Home() {
   if (process.env.NEXT_PUBLIC_SHOW_APPLY_FORM !== "true") {
-    redirect("/home");
+    redirect("/pricing");
   }
   return (
     <div className="bg-[#101016] min-h-screen">
