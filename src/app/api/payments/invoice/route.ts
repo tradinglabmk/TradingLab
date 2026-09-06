@@ -9,7 +9,9 @@ export const runtime = "nodejs";
 // Single variable font covering both Latin and Cyrillic glyphs. It has no
 // embedded bold instance, so boldText() fakes weight by double-drawing with
 // a slight offset instead of switching fonts.
-const FONT_PATH = path.join(process.cwd(), "src/assets/fonts/Roboto-Variable.ttf");
+// Lives under public/ so it's always bundled with the deployment (unlike
+// arbitrary src/ files, which need explicit output file tracing config).
+const FONT_PATH = path.join(process.cwd(), "public/fonts/Roboto-Variable.ttf");
 
 function generateInvoicePdf(payment: {
   invoiceNumber?: string;
@@ -74,7 +76,11 @@ function generateInvoicePdf(payment: {
 
     doc.moveDown(2);
     doc.fontSize(13);
-    boldText(`${payment.currency} ${amount} доспева на ${issueDate}`, 50, doc.y);
+    boldText(
+      `${payment.currency} ${amount} доспева на ${issueDate}`,
+      50,
+      doc.y,
+    );
 
     doc.moveDown(1);
     const tableTop = doc.y;

@@ -18,7 +18,9 @@ export const PricingSection = ({
   const testPlans = PLANS.filter((p) => p.category === "test");
 
   return (
-    <section className={`w-full bg-[#0F0F14] pt-6 sm:pt-10 pb-16 sm:pb-24 ${className}`}>
+    <section
+      className={`w-full bg-[#0F0F14] pt-6 sm:pt-10 pb-16 sm:pb-24 ${className}`}
+    >
       <div className="mx-auto w-[90%] max-w-6xl">
         <header className="mb-12 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-white">

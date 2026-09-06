@@ -13,7 +13,7 @@ const showApplyForm = process.env.NEXT_PUBLIC_SHOW_APPLY_FORM === "true";
 const navLinks = [
   ...(showApplyForm ? [{ name: "Аплицирај", href: "/" }] : []),
   // { name: "Едукација", href: "/home" }, // hidden for now
-  { name: "Курс", href: "/home#forex-academy" },
+  // { name: "Курс", href: "/home#forex-academy" }, // hidden for now
   { name: "Искуства од заедницата", href: "/home#community-experiences" },
   { name: "За нас", href: "/about" },
 ];

@@ -5,8 +5,8 @@ interface Button {
   variant?: "primary" | "secondary";
   className?: string;
   onClick?: () => void;
-    href?: string;
-    external?: boolean;
+  href?: string;
+  external?: boolean;
 }
 
 export const Button = ({
@@ -17,11 +17,12 @@ export const Button = ({
   onClick,
   external = true,
 }: Button) => {
-  const baseStyles =
-    "uppercase text-center font-normal text-[16px] px-6";
+  const baseStyles = "uppercase text-center font-normal text-[16px] px-6";
 
-  const primaryStyles = "bg-gradient-to-r from-[#BF94FF] to-[#863DE9] text-white";
-  const secondaryStyles = "bg-gradient-to-r from-[#FFDC7C] to-[#FEBF10] text-black";
+  const primaryStyles =
+    "bg-gradient-to-r from-[#BF94FF] to-[#863DE9] text-white";
+  const secondaryStyles =
+    "bg-gradient-to-r from-[#FFDC7C] to-[#FEBF10] text-black";
 
   const variantStyles = variant === "primary" ? primaryStyles : secondaryStyles;
 
@@ -36,13 +37,13 @@ export const Button = ({
       className={`${baseStyles} ${variantStyles} ${className}`}
       onClick={onClick}
     >
-        {external ? (
-          <a href={href} target="_blank" rel="noopener noreferrer">
-              {body}
-          </a>
-        ) : (
-          <Link href={href ?? "#"}>{body}</Link>
-        )}
+      {external ? (
+        <a href={href} target="_blank" rel="noopener noreferrer">
+          {body}
+        </a>
+      ) : (
+        <Link href={href ?? "#"}>{body}</Link>
+      )}
     </button>
   );
 };
