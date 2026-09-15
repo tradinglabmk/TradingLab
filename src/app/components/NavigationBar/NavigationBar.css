@@ -1,0 +1,14 @@
+.desktopContainer {
+  background-color: "#0F1014";
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.button {
+  border: 1px solid white;
+  border-radius: 99%;
+  font-weight: 500;
+  color: white;
+}
